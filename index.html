@@ -1,0 +1,1317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Permanence Trust Explainer</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0d14;
+  --bg2: #0f1320;
+  --surface: #141829;
+  --surface2: #1c2138;
+  --surface3: #232944;
+  --border: #2a3154;
+  --border2: #364070;
+  --text: #e8edf8;
+  --text2: #8896b8;
+  --text3: #5a6a8a;
+  --accent: #00d4aa;
+  --accent2: #0094ff;
+  --red: #ff4d6a;
+  --red-bg: rgba(255,77,106,0.08);
+  --red-border: rgba(255,77,106,0.3);
+  --green: #00d4aa;
+  --green-bg: rgba(0,212,170,0.07);
+  --green-border: rgba(0,212,170,0.3);
+  --amber: #f59e0b;
+  --amber-bg: rgba(245,158,11,0.08);
+  --amber-border: rgba(245,158,11,0.3);
+  --blue: #0094ff;
+  --blue-bg: rgba(0,148,255,0.08);
+  --blue-border: rgba(0,148,255,0.3);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f0f3fa;
+    --bg2: #e8ecf5;
+    --surface: #ffffff;
+    --surface2: #f5f7fd;
+    --surface3: #eef0f9;
+    --border: #dce2f0;
+    --border2: #c8d0e8;
+    --text: #0f1827;
+    --text2: #4a5578;
+    --text3: #8896b8;
+    --red-bg: rgba(255,77,106,0.06);
+    --red-border: rgba(220,38,38,0.3);
+    --green-bg: rgba(0,180,140,0.06);
+    --green-border: rgba(0,140,110,0.3);
+    --amber-bg: rgba(245,158,11,0.07);
+    --amber-border: rgba(180,110,0,0.3);
+    --blue-bg: rgba(0,100,220,0.06);
+    --blue-border: rgba(0,80,200,0.3);
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* ─── HEADER ─── */
+.header {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 28px 10px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-inner {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.header h1 {
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.header-badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  background: var(--surface3);
+  color: var(--accent);
+  border: 1px solid var(--green-border);
+  border-radius: 4px;
+  padding: 2px 7px;
+  letter-spacing: 0.04em;
+}
+
+.header p { display: none; }
+
+/* ─── TABS ─── */
+.tab-nav {
+  display: flex;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 0 32px;
+  gap: 0;
+}
+
+.tab-btn {
+  padding: 9px 18px;
+  border: none;
+  background: none;
+  color: var(--text3);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.18s;
+  letter-spacing: 0.01em;
+}
+
+.tab-btn:hover { color: var(--text2); }
+.tab-btn.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ─── LAYOUT ─── */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 28px 28px;
+}
+
+/* ─── PANELS ─── */
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px 18px;
+  margin-bottom: 12px;
+}
+
+.panel-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text3);
+  margin-bottom: 12px;
+}
+
+/* ─── SLIDERS ─── */
+.slider-group-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.slider-group {
+  padding: 12px 16px;
+}
+
+.slider-group:first-child {
+  border-right: 1px solid var(--border);
+}
+
+.slider-group-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.slider-row { margin-bottom: 10px; }
+.slider-row:last-child { margin-bottom: 0; }
+
+.slider-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 5px;
+}
+
+.slider-label .key {
+  font-size: 0.75rem;
+  color: var(--text2);
+}
+
+.slider-label .val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 3px;
+  background: var(--border2);
+  border-radius: 2px;
+  cursor: pointer;
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  cursor: pointer;
+  box-shadow: 0 0 0 3px rgba(0,212,170,0.15);
+  transition: box-shadow 0.15s;
+}
+
+input[type=range]::-webkit-slider-thumb:hover {
+  box-shadow: 0 0 0 5px rgba(0,212,170,0.25);
+}
+
+/* ─── SECTION TITLES ─── */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 14px 0 8px;
+}
+
+.section-num {
+  width: 22px; height: 22px;
+  background: var(--surface3);
+  border: 1px solid var(--border2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+.section-title h3 {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+/* ─── CARDS ROW ─── */
+.cards-row {
+  display: grid;
+  grid-template-columns: 1fr 40px 1fr;
+  gap: 0;
+  align-items: stretch;
+  margin-bottom: 2px;
+}
+
+.vs-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--text3);
+}
+
+.card {
+  border-radius: 7px;
+  padding: 13px 15px;
+  border: 1px solid;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+}
+
+.card.red { background: var(--red-bg); border-color: var(--red-border); }
+.card.red::before { background: var(--red); }
+.card.green { background: var(--green-bg); border-color: var(--green-border); }
+.card.green::before { background: var(--green); }
+.card.blue { background: var(--blue-bg); border-color: var(--blue-border); }
+.card.blue::before { background: var(--blue); }
+.card.neutral { background: var(--surface2); border-color: var(--border); }
+.card.neutral::before { background: var(--border2); }
+
+.card-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 10px;
+}
+
+.card.red .card-label { color: var(--red); }
+.card.green .card-label { color: var(--green); }
+.card.blue .card-label { color: var(--blue); }
+.card.neutral .card-label { color: var(--text3); }
+
+.card-main {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 3px;
+  color: var(--text);
+}
+
+.card-sub {
+  font-size: 0.73rem;
+  color: var(--text2);
+  margin-bottom: 8px;
+}
+
+.card-note {
+  font-size: 0.69rem;
+  color: var(--text3);
+  background: rgba(0,0,0,0.15);
+  border-radius: 4px;
+  padding: 5px 8px;
+  line-height: 1.4;
+  border-left: 2px solid var(--border2);
+}
+
+.card.red .card-note { border-left-color: var(--red); }
+.card.green .card-note { border-left-color: var(--green); }
+.card.blue .card-note { border-left-color: var(--blue); }
+
+/* ─── FOOTER BAR ─── */
+.footer-bar {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  padding: 7px 13px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: var(--text2);
+  margin-bottom: 4px;
+}
+
+/* ─── PILLS ─── */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 600;
+  gap: 4px;
+}
+
+.pill.green { background: rgba(0,212,170,0.12); color: var(--green); border: 1px solid var(--green-border); }
+.pill.amber { background: rgba(245,158,11,0.12); color: var(--amber); border: 1px solid var(--amber-border); }
+.pill.red   { background: rgba(255,77,106,0.12);  color: var(--red);   border: 1px solid var(--red-border); }
+.pill.blue  { background: rgba(0,148,255,0.12);   color: var(--blue);  border: 1px solid var(--blue-border); }
+
+/* ─── STATUS BAR ─── */
+.status-bar {
+  border-radius: 6px;
+  padding: 8px 13px;
+  font-size: 0.79rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 8px;
+  border: 1px solid;
+}
+
+.status-bar.green { background: rgba(0,212,170,0.08); color: var(--green); border-color: var(--green-border); }
+.status-bar.amber { background: rgba(245,158,11,0.08); color: var(--amber); border-color: var(--amber-border); }
+.status-bar.red   { background: rgba(255,77,106,0.08); color: var(--red);   border-color: var(--red-border); }
+
+/* ─── CHART WRAP ─── */
+.chart-wrap {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 7px;
+  padding: 12px 14px;
+  margin-top: 10px;
+}
+
+.chart-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text3);
+  margin-bottom: 10px;
+}
+
+/* ─── HEADER STATS ─── */
+.header-stats {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+
+.hstat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.58rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text3);
+  margin-bottom: 3px;
+}
+
+.hstat-val {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* ─── STEPPER ─── */
+.stepper-nav {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.step-btn {
+  padding: 8px 18px;
+  border: 1px solid var(--border2);
+  background: var(--surface2);
+  color: var(--text2);
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all 0.15s;
+}
+
+.step-btn.active {
+  background: rgba(0,212,170,0.1);
+  color: var(--green);
+  border-color: var(--green-border);
+}
+
+.step-content { display: none; }
+.step-content.active { display: block; }
+
+/* ─── SPLIT BAR ─── */
+.split-bar-outer { margin: 14px 0 6px; }
+
+.split-bar {
+  display: flex;
+  height: 22px;
+  border-radius: 5px;
+  overflow: hidden;
+  gap: 2px;
+  background: var(--surface3);
+}
+
+.seg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.9);
+  transition: width 0.35s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.seg.s-daccs { background: var(--blue); }
+.seg.s-compound { background: var(--green); }
+
+.split-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.7rem;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+/* ─── COVERAGE BAR ─── */
+.cov-bar-outer { margin: 12px 0; }
+
+.cov-bar {
+  display: flex;
+  height: 18px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--surface3);
+}
+
+.cov-seg { transition: width 0.35s ease; }
+.cov-seg.cs-daccs { background: var(--blue); }
+.cov-seg.cs-biochar { background: #8b5cf6; }
+.cov-seg.cs-reserve { background: var(--green); }
+.cov-seg.cs-uncov { background: var(--surface3); border: 1px solid var(--border); }
+
+.cov-legend {
+  display: flex;
+  gap: 14px;
+  margin-top: 5px;
+  font-size: 0.69rem;
+  color: var(--text3);
+}
+
+.cov-legend span::before {
+  content: '■ ';
+}
+
+.cov-legend .l-daccs::before { color: var(--blue); }
+.cov-legend .l-biochar::before { color: #8b5cf6; }
+.cov-legend .l-res::before { color: var(--green); }
+.cov-legend .l-unc::before { color: var(--border2); }
+
+/* ─── SINGLE SLIDER PANEL ─── */
+.solo-sliders .slider-row { margin-bottom: 14px; }
+.solo-sliders .slider-row:last-child { margin-bottom: 0; }
+
+/* ─── SECTION DIVIDER ─── */
+.sect-divider {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .container { padding: 16px; }
+  .slider-group-row { grid-template-columns: 1fr; }
+  .slider-group:first-child { border-right: none; border-bottom: 1px solid var(--border); }
+  .cards-row { grid-template-columns: 1fr; }
+  .vs-div { padding: 6px; font-size: 0.65rem; }
+  .tab-btn { padding: 12px 14px; font-size: 0.78rem; }
+  .header-stats { gap: 18px; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-inner">
+    <h1>Permanence Trust Explainer</h1>
+    <span class="header-badge">250,000 tCO₂ ARR</span>
+    <span class="header-badge" style="color:var(--text3);border-color:var(--border);background:transparent">Scaling multiplies absolute numbers · ratios are invariant</span>
+  </div>
+  <p>Demonstrates how replacing carbon market buffer pools with a compounding risk premium changes the economics of nature-based carbon removals.</p>
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab(0)">① Model Comparison</button>
+  <button class="tab-btn" onclick="switchTab(1)">② Break-even Finder</button>
+  <button class="tab-btn" onclick="switchTab(2)">③ The Hedge</button>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 1 — MODEL COMPARISON
+══════════════════════════════════════════════ -->
+<div id="tab0" class="tab-content active">
+<div class="container">
+
+  <div class="panel">
+    <div class="slider-group-row">
+      <div class="slider-group">
+        <div class="slider-group-label">Group 1 · Project Economics</div>
+        <div class="slider-row">
+          <div class="slider-label">
+            <span class="key">ARR Credit Price</span>
+            <span class="val" id="m_price_v">£20 / tCO₂</span>
+          </div>
+          <input type="range" id="m_price" min="5" max="50" value="20" step="1" oninput="updM()">
+        </div>
+        <div class="slider-row">
+          <div class="slider-label">
+            <span class="key">Buffer Pool Contribution</span>
+            <span class="val" id="m_buf_v">15%</span>
+          </div>
+          <input type="range" id="m_buf" min="10" max="20" value="15" step="1" oninput="updM()">
+        </div>
+        <div style="margin-top:10px;padding:7px 10px;background:var(--surface3);border-radius:5px;border-left:2px solid var(--red-border);display:flex;justify-content:space-between;align-items:center;">
+          <span style="font-size:0.7rem;color:var(--text3);">Credits withheld from market</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:0.76rem;font-weight:600;color:var(--red)" id="m_withheld_stat">37,500 tCO₂ · £750k</span>
+        </div>
+        <div class="slider-row" style="margin-top:14px;">
+          <div class="slider-label">
+            <span class="key">ARR Price Appreciation (% p.a.)</span>
+            <span class="val" id="m_arr_appr_v">2.0% p.a.</span>
+          </div>
+          <input type="range" id="m_arr_appr" min="0" max="6" value="2" step="0.5" oninput="updM()">
+          <div style="margin-top:5px;font-size:0.68rem;color:var(--text3);line-height:1.45;">0% = flat real prices · 2% = modest quality-premium growth · 4–5% = market tightening · 6% = high-end stress. Inflates the reversal cost the PT reserve must cover at horizon.</div>
+        </div>
+      </div>
+      <div class="slider-group">
+        <div class="slider-group-label">Group 2 · Permanence Trust Parameters</div>
+        <div class="slider-row">
+          <div class="slider-label">
+            <span class="key">PT Risk Premium (% of total project value)</span>
+            <span class="val" id="m_prem_v">3.0%</span>
+          </div>
+          <input type="range" id="m_prem" min="0.5" max="20" value="3" step="0.5" oninput="updM()">
+        </div>
+        <div class="slider-row">
+          <div class="slider-label">
+            <span class="key">Annual Return</span>
+            <span class="val" id="m_ret_v">7.0%</span>
+          </div>
+          <input type="range" id="m_ret" min="5" max="10" value="7" step="0.5" oninput="updM()">
+        </div>
+        <div class="slider-row">
+          <div class="slider-label">
+            <span class="key">Time Horizon</span>
+            <span class="val" id="m_hor_v">30 yrs</span>
+          </div>
+          <input type="range" id="m_hor" min="1" max="100" value="30" step="1" oninput="updM()">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ① Cost to Cover Reversal Risk -->
+  <div class="section-title">
+    <span class="section-num">1</span>
+    <h3>Cost to Cover Reversal Risk</h3>
+  </div>
+  <div style="margin-bottom:10px;padding:8px 12px;background:var(--surface2);border:1px solid var(--border2);border-left:3px solid var(--amber);border-radius:6px;font-size:0.76rem;line-height:1.5;color:var(--text2);">
+    <strong style="color:var(--text);">Coverage assumption — two very different targets.</strong> The <strong>Permanence Trust</strong> is explicitly designed to grow toward <strong>100% replacement of all 250,000 tCO₂</strong> if the project fully reverses. The <strong>buffer pool</strong> withholds only 10–20% of credits and can cover <em>only that withheld fraction</em> — the remaining 80–90% of sold credits have no financial backstop if they reverse. The models are not symmetric: one is a partial reserve, the other targets full liability coverage.
+  </div>
+
+  <div class="cards-row">
+    <div class="card red">
+      <div class="card-label">Buffer Pool Model</div>
+      <div class="card-main" id="m_buf_cost">—</div>
+      <div class="card-sub" id="m_buf_tonnes_sub">— withheld permanently</div>
+      <div class="card-note" style="margin-bottom:8px;">Covers only the <strong>withheld portion</strong>. The sold credits carry no backstop in the buffer reserve.</div>
+      <div style="padding:6px 9px;background:rgba(255,77,106,0.08);border-radius:4px;border:1px solid var(--red-border);font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--red);">£0 compounding · no financial reserve built</div>
+    </div>
+    <div class="vs-div">VS</div>
+    <div class="card green">
+      <div class="card-label">Permanence Trust Model</div>
+      <div class="card-main" id="m_pt_cost">—</div>
+      <div class="card-sub" id="m_pt_grows_sub">—</div>
+      <div class="card-note" style="margin-bottom:8px;" id="m_pt_pct_note">—</div>
+      <div style="padding:6px 9px;background:rgba(0,212,170,0.08);border-radius:4px;border:1px solid var(--green-border);font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--green);" id="m_reserve_inline">— of adjusted reversal target</div>
+    </div>
+  </div>
+  <div class="footer-bar" style="margin-bottom:10px;">
+    <span>Upfront cost difference</span>
+    <span id="m_cost_diff">—</span>
+  </div>
+
+  <div id="m_status" class="status-bar green">—</div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 2 — BREAK-EVEN FINDER
+══════════════════════════════════════════════ -->
+<div id="tab1" class="tab-content">
+<div class="container">
+
+  <div class="panel">
+    <div class="header-stats">
+      <div>
+        <div class="hstat-label">Reversal Target Today</div>
+        <div class="hstat-val" id="b_target">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">Adjusted Target at Horizon</div>
+        <div class="hstat-val" id="b_adj_target">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">Buffer Pool Cost (this tab)</div>
+        <div class="hstat-val" id="b_buf_cost_h">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">Min Premium Floor (real rate, 100 yr)</div>
+        <div class="hstat-val" id="b_floor">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">Break-even Finder — Controls <span style="color:var(--accent);font-size:0.62rem;margin-left:8px;">Settings here carry through to The Hedge →</span></div>
+    <div class="solo-sliders" style="display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;">
+      <div class="slider-row">
+        <div class="slider-label">
+          <span class="key">PT Risk Premium</span>
+          <span class="val" id="b_prem_v">3.0%</span>
+        </div>
+        <input type="range" id="b_prem" min="0.5" max="20" value="3" step="0.5" oninput="updB()">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label">
+          <span class="key">Annual Return</span>
+          <span class="val" id="b_ret_v">7.0%</span>
+        </div>
+        <input type="range" id="b_ret" min="5" max="10" value="7" step="0.5" oninput="updB()">
+      </div>
+      <div class="slider-row">
+        <div class="slider-label">
+          <span class="key">Buffer Pool Contribution</span>
+          <span class="val" id="b_buf_v">15%</span>
+        </div>
+        <input type="range" id="b_buf" min="10" max="20" value="15" step="1" oninput="updB()">
+        <div style="margin-top:4px;font-size:0.67rem;color:var(--text3);">Sets comparison baseline — buffer covers only this withheld fraction</div>
+      </div>
+      <div class="slider-row">
+        <div class="slider-label">
+          <span class="key">ARR Price Appreciation</span>
+          <span class="val" id="b_arr_appr_v">2.0% p.a.</span>
+        </div>
+        <input type="range" id="b_arr_appr" min="0" max="6" value="2" step="0.5" oninput="updB()">
+        <div style="margin-top:4px;font-size:0.67rem;color:var(--text3);">Inflates reversal target — reserve must outpace both return and appreciation</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cost differential strip -->
+  <div style="margin-bottom:14px;display:grid;grid-template-columns:1fr auto 1fr auto;gap:0;background:var(--surface);border:1px solid var(--border);border-radius:8px;overflow:hidden;align-items:stretch;">
+    <div style="padding:12px 16px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:4px;">Buffer Pool Cost</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:1.15rem;font-weight:600;" id="b_buf_cost_strip">—</div>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:2px;" id="b_buf_strip_sub">— withheld × credit price</div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;padding:0 12px;background:var(--surface2);font-family:'IBM Plex Mono',monospace;font-size:0.65rem;color:var(--text3);">VS</div>
+    <div style="padding:12px 16px;border-left:1px solid var(--border);">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:0.6rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--green);margin-bottom:4px;">PT Premium</div>
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:1.15rem;font-weight:600;" id="b_pt_cost_strip">—</div>
+      <div style="font-size:0.72rem;color:var(--text3);margin-top:2px;">250,000 × credit price × premium rate</div>
+    </div>
+    <div style="display:flex;align-items:center;padding:12px 16px;background:var(--surface2);border-left:1px solid var(--border);">
+      <span id="b_diff_pill">—</span>
+    </div>
+  </div>
+
+  <div class="chart-wrap">
+    <div class="chart-title">PT Reserve vs Appreciation-Adjusted Reversal Target (£)</div>
+    <canvas id="chart_reserve" height="150"></canvas>
+  </div>
+
+  <div id="b_status" class="status-bar green">—</div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     TAB 3 — THE HEDGE
+══════════════════════════════════════════════ -->
+<div id="tab2" class="tab-content">
+<div class="container">
+
+  <div class="panel">
+    <div class="panel-title" style="margin-bottom:10px;">Locked from Break-even Finder — go back to ② to adjust these</div>
+    <div class="header-stats" style="gap:24px;">
+      <div>
+        <div class="hstat-label">ARR Credit Price</div>
+        <div class="hstat-val" id="p_price_locked">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">PT Risk Premium</div>
+        <div class="hstat-val" id="p_prem_locked">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">Annual Return</div>
+        <div class="hstat-val" id="p_ret_locked">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">ARR Appreciation</div>
+        <div class="hstat-val" id="p_appr_locked">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">Buffer Pool %</div>
+        <div class="hstat-val" id="p_buf_locked">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">Total PT Premium</div>
+        <div class="hstat-val" id="p_total_prem">—</div>
+      </div>
+      <div>
+        <div class="hstat-label">Adjusted Reversal Target</div>
+        <div class="hstat-val" id="p_target">—</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-title">The DACCS Signal</div>
+    <div style="font-size:0.82rem;color:var(--text2);line-height:1.7;margin-bottom:18px;">
+      Spend a small share of the PT premium on DACCS <em>today</em>. The tonnage will look negligible — that's expected at current prices. But the act of buying matters: it signals real, creditworthy demand, contributes to the commercial viability of early DACCS projects, and helps push the cost curve down for everyone. Meanwhile, the remaining premium still compounds toward the break-even target — the hedge costs you very little in coverage terms.
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px 32px;">
+      <div class="slider-row">
+        <div class="slider-label">
+          <span class="key">DACCS allocation (% of premium)</span>
+          <span class="val" id="p_daccs_v">10%</span>
+        </div>
+        <input type="range" id="p_daccs" min="0" max="30" value="10" step="1" oninput="updP()">
+        <div style="margin-top:4px;font-size:0.67rem;color:var(--text3);">Keep this small — the point is the signal, not the volume. 0–30% range.</div>
+      </div>
+      <div class="slider-row">
+        <div class="slider-label">
+          <span class="key">DACCS today price (£/tCO₂)</span>
+          <span class="val" id="p_daccs_today_v">£700</span>
+        </div>
+        <input type="range" id="p_daccs_today" min="300" max="1200" value="700" step="50" oninput="updP()">
+        <div style="margin-top:4px;font-size:0.67rem;color:var(--text3);">Current range: ~£300–1,200/tCO₂ depending on technology and project</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Two cards -->
+  <div class="cards-row">
+    <div class="card blue">
+      <div class="card-label">DACCS bought today</div>
+      <div class="card-main" id="p_daccs_tonnes_main">—</div>
+      <div class="card-sub" id="p_daccs_spend_sub">—</div>
+      <div class="card-note" style="margin-top:8px;">Negligible tonnage today — but permanent, and a real demand signal to the market.</div>
+    </div>
+    <div class="vs-div">→</div>
+    <div class="card green">
+      <div class="card-label">Can reserve cover 250k tCO₂ by Year 100?</div>
+      <div class="card-main" id="p_be_year_main">—</div>
+      <div class="card-sub" id="p_be_shift_sub">vs. 0% allocation: —</div>
+      <div style="margin-top:8px;padding:7px 10px;background:rgba(0,212,170,0.08);border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;color:var(--green);" id="p_reserve_badge">Reserve at year 30: —</div>
+      <div class="card-note" style="margin-top:8px;">Year the reserve can buy 250,000 tCO₂ of ARR at the projected future price. Must be ≤ 100 to stay within the reversal window.</div>
+    </div>
+  </div>
+  <div id="p_status" class="status-bar green" style="margin-bottom:20px;">—</div>
+
+  <!-- Hero chart -->
+  <div class="chart-wrap">
+    <div class="chart-title">What the compounding reserve could buy — DACCS and ARR, 2025 to 2100</div>
+    <div style="font-size:0.72rem;color:var(--text2);margin-bottom:10px;line-height:1.5;">
+      <span style="color:var(--blue);">■ Blue</span> = DACCS tonnes (expensive today, falling cost curve). <span style="color:var(--amber);">■ Amber</span> = ARR tonnes (cheaper today, but price rises with quality premium). The <span style="color:var(--red);">red dashed</span> line is the full 250k reversal target. The <span style="color:#f97316">orange dashed</span> line is the 20% partial target — the maximum a buffer pool ever covers.
+    </div>
+    <canvas id="chart_hedge" height="180"></canvas>
+    <div style="margin-top:10px;display:flex;flex-wrap:wrap;gap:8px;">
+      <span id="p_daccs_be_note" style="padding:4px 9px;background:rgba(0,148,255,0.1);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--blue);">DACCS crosses 250k: —</span>
+      <span id="p_arr_be_note" style="padding:4px 9px;background:rgba(245,158,11,0.1);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--amber);">ARR crosses 250k: —</span>
+      <span id="p_buf_cross_note" style="padding:4px 9px;background:rgba(0,212,170,0.1);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:0.7rem;color:var(--green);">DACCS crosses 50k (buffer equiv.): —</span>
+    </div>
+  </div>
+
+  <!-- Learning curve assumption — minimal, below chart -->
+  <div style="margin-top:16px;padding:16px 20px;background:var(--surface);border:1px solid var(--border);border-radius:8px;">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:0.62rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:12px;">DACCS learning curve assumption</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px 32px;">
+      <div class="slider-row">
+        <div class="slider-label">
+          <span class="key">DACCS floor price — 50 years from now (£/tCO₂)</span>
+          <span class="val" id="p_daccs_floor_v">£150</span>
+        </div>
+        <input type="range" id="p_daccs_floor" min="50" max="400" value="150" step="10" oninput="updP()">
+        <div style="margin-top:4px;font-size:0.67rem;color:var(--text3);">Optimistic: £50–100 · Central: £150 · Slow learning: £250–400 · Flat after 2060</div>
+      </div>
+      <div style="font-size:0.78rem;color:var(--text2);line-height:1.6;padding-top:4px;">
+        Early purchases like this one help pull DACCS down the cost curve — aggregate demand from PT-funded projects signals commercial viability and attracts manufacturing investment, accelerating the learning rate for the whole market.
+      </div>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- ══════════════════════════════════════════════
+     SCRIPT
+══════════════════════════════════════════════ -->
+<script>
+const VOL = 250000;
+
+// Shared state driven by Tab 1
+let state = { price: 20, buf: 0.15, prem: 0.03, ret: 0.07, hor: 30, arrAppr: 0.02 };
+
+// Break-even state — carried through to The Hedge
+let beState = { prem: 0.03, ret: 0.07, arrAppr: 0.02, buf: 0.15 };
+
+// Chart instances
+let cReserve = null, cHedge = null, cCosts = null;
+
+// ── Helpers ──────────────────────────────────────
+function fmtGBP(v) {
+  const a = Math.abs(v);
+  if (a >= 1e6) return (v < 0 ? '-' : '') + '£' + (Math.abs(v)/1e6).toFixed(2) + 'm';
+  if (a >= 1e3) return (v < 0 ? '-' : '') + '£' + (Math.abs(v)/1e3).toFixed(1) + 'k';
+  return (v < 0 ? '-' : '') + '£' + Math.round(Math.abs(v)).toLocaleString();
+}
+
+function fmtT(v) { return Math.round(v).toLocaleString() + ' tCO₂'; }
+function fmtPct(v) { return (v * 100).toFixed(1) + '%'; }
+function g(id) { return document.getElementById(id); }
+
+// ── Dark mode colours for Chart.js ───────────────
+function chartColors() {
+  const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  return {
+    grid: dark ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)',
+    text: dark ? '#8896b8' : '#4a5578',
+    bg: dark ? '#1c2138' : '#f5f7fd'
+  };
+}
+
+// ── Tab switching ─────────────────────────────────
+function switchTab(i) {
+  document.querySelectorAll('.tab-content').forEach((t, j) => t.classList.toggle('active', i === j));
+  document.querySelectorAll('.tab-btn').forEach((t, j) => t.classList.toggle('active', i === j));
+  if (i === 1) updB();
+  if (i === 2) updP();
+}
+
+function switchStep(i) {
+  document.querySelectorAll('.step-content').forEach((s, j) => s.classList.toggle('active', i === j));
+  document.querySelectorAll('.step-btn').forEach((b, j) => b.classList.toggle('active', i === j));
+}
+
+// ══════════════════════════════════════════════════
+// TAB 1
+// ══════════════════════════════════════════════════
+function updM() {
+  const price    = +g('m_price').value;
+  const buf      = +g('m_buf').value / 100;
+  const prem     = +g('m_prem').value / 100;
+  const ret      = +g('m_ret').value / 100;
+  const hor      = +g('m_hor').value;
+  const arrAppr  = +g('m_arr_appr').value / 100;
+
+  g('m_price_v').textContent    = '£' + price + ' / tCO₂';
+  g('m_buf_v').textContent      = g('m_buf').value + '%';
+  g('m_prem_v').textContent     = (+g('m_prem').value).toFixed(1) + '%';
+  g('m_ret_v').textContent      = (+g('m_ret').value).toFixed(1) + '%';
+  g('m_hor_v').textContent      = hor + ' yrs';
+  g('m_arr_appr_v').textContent = (+g('m_arr_appr').value).toFixed(1) + '% p.a.';
+
+  state = { price, buf, prem, ret, hor, arrAppr };
+
+  const totalVal      = price * VOL;                          // project value today
+  const futurePrice   = price * Math.pow(1 + arrAppr, hor);  // ARR price at horizon
+  const adjTarget     = futurePrice * VOL;                    // inflation-adjusted reversal cost
+  const withheld      = VOL * buf;
+  const bufCost       = withheld * price;
+  const ptPrem        = totalVal * prem;
+  const ptGrows       = ptPrem * Math.pow(1 + ret, hor);
+  const pctOfVal      = ptPrem / totalVal;                    // premium as % of project value today
+  const reservePct    = ptGrows / adjTarget;                  // reserve vs adjusted target
+
+  // Top cost cards
+  g('m_buf_cost').textContent       = fmtGBP(bufCost);
+  g('m_buf_tonnes_sub').textContent = fmtT(withheld) + ' withheld permanently';
+  g('m_pt_cost').textContent        = fmtGBP(ptPrem);
+  g('m_pt_grows_sub').textContent   = 'Grows to ' + fmtGBP(ptGrows) + ' over ' + hor + ' yrs';
+  g('m_pt_pct_note').innerHTML      = 'Targets <strong>full 250,000 tCO₂</strong>. Premium = '
+    + fmtPct(pctOfVal) + ' of total project value (' + fmtGBP(totalVal) + ').';
+
+  // Inline reserve tag on PT card
+  g('m_reserve_inline').textContent = fmtGBP(ptGrows) + ' reserve · '
+    + fmtPct(reservePct) + ' of adjusted reversal target';
+
+  // Withheld inline stat & upfront cost diff
+  g('m_withheld_stat').textContent = fmtT(withheld) + ' · ' + fmtGBP(bufCost);
+
+  const diff = bufCost - ptPrem;
+  if (diff > 0) {
+    g('m_cost_diff').innerHTML = `<span class="pill green">PT is ${fmtGBP(diff)} cheaper upfront (${fmtPct(diff/bufCost)} less)</span>`;
+  } else {
+    g('m_cost_diff').innerHTML = `<span class="pill amber">PT costs ${fmtGBP(-diff)} more upfront for full coverage</span>`;
+  }
+
+  let cls, label;
+  if (reservePct >= 1) {
+    cls = 'green';
+    label = '✅ Reserve covers the adjusted reversal target at Year ' + hor
+      + (arrAppr > 0 ? ' (incl. ' + fmtPct(arrAppr) + ' p.a. ARR inflation → ' + fmtGBP(adjTarget) + ')' : '');
+  } else if (reservePct >= 0.5) {
+    cls = 'amber';
+    label = '⚠ Reserve covers ' + fmtPct(reservePct) + ' of the '
+      + (arrAppr > 0 ? 'inflation-adjusted ' : '') + 'reversal target ('
+      + fmtGBP(adjTarget) + ') — raise premium, return, or horizon';
+  } else {
+    cls = 'red';
+    label = '✗ Reserve covers only ' + fmtPct(reservePct) + ' of the '
+      + (arrAppr > 0 ? 'inflation-adjusted ' : '') + 'reversal target ('
+      + fmtGBP(adjTarget) + ') — materially insufficient at this horizon';
+  }
+  const sb = g('m_status');
+  sb.className = 'status-bar ' + cls;
+  sb.textContent = label;
+}
+
+// ══════════════════════════════════════════════════
+// TAB 2
+// ══════════════════════════════════════════════════
+function updB() {
+  const price    = state.price;
+  const buf      = +g('b_buf').value / 100;
+  const prem     = +g('b_prem').value / 100;
+  const ret      = +g('b_ret').value / 100;
+  const arrAppr  = +g('b_arr_appr').value / 100;
+
+  g('b_prem_v').textContent     = (+g('b_prem').value).toFixed(1) + '%';
+  g('b_ret_v').textContent      = (+g('b_ret').value).toFixed(1) + '%';
+  g('b_arr_appr_v').textContent = (+g('b_arr_appr').value).toFixed(1) + '% p.a.';
+  g('b_buf_v').textContent      = g('b_buf').value + '%';
+
+  // Write through to hedge tab
+  beState = { prem, ret, arrAppr, buf };
+
+  const totalVal  = price * VOL;
+  const adjTarget100 = totalVal * Math.pow(1 + arrAppr, 100);
+  const bufCost   = VOL * buf * price;
+  const ptPrem    = totalVal * prem;
+  // Real net return after appreciation
+  const retReal   = (1 + ret) / (1 + arrAppr) - 1;
+  // Min floor: premium must be > (1+arrAppr/1+ret)^100 to ever break even
+  const minFloor  = Math.pow((1 + arrAppr) / (1 + ret), 100);
+
+  g('b_target').textContent     = fmtGBP(totalVal);
+  g('b_adj_target').textContent = fmtGBP(adjTarget100) + ' (yr 100)';
+  g('b_buf_cost_h').textContent = fmtGBP(bufCost);
+  g('b_floor').textContent      = retReal > 0
+    ? (minFloor * 100).toFixed(3) + '%'
+    : '∞ (return < appreciation)';
+
+  // Cost differential strip
+  g('b_buf_cost_strip').textContent = fmtGBP(bufCost);
+  g('b_buf_strip_sub').textContent  = Math.round(VOL * buf).toLocaleString() + ' tCO₂ withheld × £' + price + '/t';
+  g('b_pt_cost_strip').textContent  = fmtGBP(ptPrem);
+  const diff = bufCost - ptPrem;
+  if (diff > 0) {
+    const cheaper = fmtPct(diff / bufCost);
+    const mult    = (1 / buf).toFixed(1);
+    g('b_diff_pill').innerHTML = `<span class="pill green">PT is ${cheaper} cheaper<br><span style="font-size:0.68rem;opacity:0.85;">${mult}× more project coverage</span></span>`;
+  } else {
+    g('b_diff_pill').innerHTML = `<span class="pill amber">PT costs ${fmtGBP(-diff)} more<br><span style="font-size:0.68rem;opacity:0.85;">but covers full 250k vs ${(buf*100).toFixed(0)}%</span></span>`;
+  }
+
+  // Break-even: ptPrem × (1+ret)^t >= totalVal × (1+arrAppr)^t
+  let beYear = null;
+  for (let t = 1; t <= 200; t++) {
+    if (ptPrem * Math.pow(1 + ret, t) >= totalVal * Math.pow(1 + arrAppr, t)) { beYear = t; break; }
+  }
+
+  const cc = chartColors();
+  const years = Array.from({ length: 100 }, (_, i) => i + 1);
+  const reserveVals = years.map(t => ptPrem * Math.pow(1 + ret, t));
+  const targetLine  = years.map(t => totalVal * Math.pow(1 + arrAppr, t));
+
+  if (cReserve) cReserve.destroy();
+  cReserve = new Chart(g('chart_reserve'), {
+    type: 'line',
+    data: {
+      labels: years,
+      datasets: [
+        {
+          label: 'PT Reserve',
+          data: reserveVals,
+          borderColor: '#00d4aa',
+          backgroundColor: 'rgba(0,212,170,0.1)',
+          fill: true,
+          tension: 0.35,
+          borderWidth: 2.5,
+          pointRadius: 0
+        },
+        {
+          label: 'Reversal Target (ARR appreciation)',
+          data: targetLine,
+          borderColor: '#ff4d6a',
+          borderDash: [7, 4],
+          borderWidth: 2,
+          pointRadius: 0,
+          fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { labels: { color: cc.text, font: { size: 11, family: 'IBM Plex Mono' } } },
+        tooltip: {
+          backgroundColor: 'rgba(12,16,35,0.95)',
+          titleColor: '#e8edf8',
+          bodyColor: '#8896b8',
+          borderColor: '#2a3154',
+          borderWidth: 1,
+          callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmtGBP(ctx.raw) }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: cc.grid },
+          ticks: { color: cc.text, maxTicksLimit: 11, font: { size: 10 } },
+          title: { display: true, text: 'Year', color: cc.text, font: { size: 10 } }
+        },
+        y: {
+          grid: { color: cc.grid },
+          ticks: { color: cc.text, font: { size: 10 }, callback: v => fmtGBP(v) }
+        }
+      }
+    }
+  });
+
+  const sb = g('b_status');
+  if (!beYear) {
+    sb.className = 'status-bar red';
+    sb.textContent = '✗ Break-even never reached — reserve grows slower than the appreciation-inflated target. Raise return or premium, or lower appreciation assumption.';
+  } else if (beYear <= 100) {
+    sb.className = 'status-bar green';
+    sb.textContent = '✅ Break-even at Year ' + beYear + ' — reserve overtakes the growing reversal target (net real rate: ' + fmtPct(retReal) + ' p.a.)';
+  } else {
+    sb.className = 'status-bar amber';
+    sb.textContent = '⚠ Break-even at Year ' + beYear + ' — beyond 100-year horizon. Net real rate (' + fmtPct(retReal) + ') is positive but premium needs time.';
+  }
+}
+
+// ══════════════════════════════════════════════════
+// TAB 3
+// ══════════════════════════════════════════════════
+function updP() {
+  const price      = state.price;
+  const prem       = beState.prem;
+  const ret        = beState.ret;
+  const arrAppr    = beState.arrAppr;
+  const buf        = beState.buf;
+  const daccsPct   = +g('p_daccs').value / 100;
+  const daccsToday = +g('p_daccs_today').value;
+  const daccsFloor = +g('p_daccs_floor').value;
+
+  g('p_daccs_v').textContent         = g('p_daccs').value + '%';
+  g('p_daccs_today_v').textContent   = '£' + daccsToday;
+  g('p_daccs_floor_v').textContent   = '£' + daccsFloor;
+
+  // Locked context
+  g('p_price_locked').textContent = '£' + price + ' / tCO₂';
+  g('p_prem_locked').textContent  = (prem * 100).toFixed(1) + '%';
+  g('p_ret_locked').textContent   = (ret * 100).toFixed(1) + '%';
+  g('p_appr_locked').textContent  = (arrAppr * 100).toFixed(1) + '% p.a.';
+  g('p_buf_locked').textContent   = (buf * 100).toFixed(0) + '%';
+
+  const totalVal      = price * VOL;
+  const totalPrem     = totalVal * prem;
+  const daccsSpend    = totalPrem * daccsPct;
+  const compoundStart = totalPrem * (1 - daccsPct);
+  const daccsTonnes   = daccsSpend / daccsToday;
+  const daccsPctOfVol = daccsTonnes / VOL;
+
+  // Use horizon from break-even finder for context (default 30)
+  const HOR = 30;
+  const adjTarget = totalVal * Math.pow(1 + arrAppr, HOR);
+  const compoundEnd = compoundStart * Math.pow(1 + ret, HOR);
+
+  g('p_total_prem').textContent = fmtGBP(totalPrem);
+  g('p_target').textContent     = fmtGBP(adjTarget) + ' (adj. yr 30)';
+
+  // Left card
+  g('p_daccs_tonnes_main').textContent = fmtT(daccsTonnes);
+  g('p_daccs_spend_sub').textContent   = fmtGBP(daccsSpend) + ' spent at £' + daccsToday + '/tCO₂';
+
+  // Right card — can reserve cover 250k tonnes by Year 100?
+  // Test against DACCS (permanent) and ARR (replacement) separately
+  // Break-even = reserve / price(year) >= 250,000 at or before Year 100
+  let beBase = null, beWith = null;
+  for (let t = 1; t <= 200; t++) {
+    const arrPriceT = price * Math.pow(1 + arrAppr, t);
+    if (beBase === null && totalPrem     * Math.pow(1 + ret, t) / arrPriceT >= VOL) beBase = t;
+    if (beWith === null && compoundStart * Math.pow(1 + ret, t) / arrPriceT >= VOL) beWith = t;
+    if (beBase !== null && beWith !== null) break;
+  }
+  const beBaseStr = beBase ? 'Year ' + beBase : 'beyond Year 200';
+  const beWithStr = beWith ? 'Year ' + beWith : 'beyond Year 200';
+  const beShift   = (beBase !== null && beWith !== null) ? (beWith - beBase) : null;
+
+  g('p_be_year_main').textContent  = beWithStr;
+  g('p_be_shift_sub').textContent  = 'vs. 0% DACCS allocation: ' + beBaseStr
+    + (beShift !== null ? ' (+' + beShift + ' yr' + (beShift === 1 ? '' : 's') + ')' : '');
+  g('p_reserve_badge').textContent = 'Reserve at year 30: ' + fmtGBP(compoundEnd);
+
+  const sb = g('p_status');
+  if (beWith !== null && beWith <= 100) {
+    sb.className = 'status-bar green';
+    sb.textContent = '✅ Reserve can buy 250,000 tCO₂ in ARR by Year ' + beWith
+      + (beShift !== null ? ' — DACCS allocation costs only ' + beShift + ' yr' + (beShift===1?'':'s') + ' of delay' : '');
+  } else if (beWith !== null && beWith <= 150) {
+    sb.className = 'status-bar amber';
+    sb.textContent = '⚠ Reserve reaches 250k ARR tonnes at Year ' + beWith + ' — beyond the 100-year window. Visible on chart but outside target horizon.';
+  } else {
+    sb.className = 'status-bar red';
+    sb.textContent = '✗ Reserve cannot buy 250,000 tCO₂ of ARR within 200 years at these settings — raise premium or return, or lower appreciation rate.';
+  }
+
+  // ── Chart: Year 0–100 axis ────────────────────────
+  const chartYears = Array.from({ length: 101 }, (_, i) => i);  // Year 0 to 100
+
+  const daccsDecayRate = Math.pow(daccsFloor / daccsToday, 1 / 35);
+  const daccsPrices = chartYears.map(y =>
+    y <= 35 ? daccsToday * Math.pow(daccsDecayRate, y) : daccsFloor
+  );
+
+  // ARR price: rises each year from today's price
+  const arrPrices = chartYears.map(y => price * Math.pow(1 + arrAppr, y));
+
+  const reserves     = chartYears.map(y => compoundStart * Math.pow(1 + ret, y));
+  const daccsFromRes = chartYears.map((_, i) => reserves[i] / daccsPrices[i]);
+  const arrFromRes   = chartYears.map((_, i) => reserves[i] / arrPrices[i]);
+  const VOL20        = VOL * 0.20;  // 50,000 — buffer pool maximum
+
+  // Break-even annotations (year index = year number directly)
+  let daccsBE = null, arrBE = null, daccsBuf = null;
+  for (let i = 0; i < chartYears.length; i++) {
+    if (daccsBE  === null && daccsFromRes[i] >= VOL)  daccsBE  = i;
+    if (arrBE    === null && arrFromRes[i]   >= VOL)  arrBE    = i;
+    if (daccsBuf === null && daccsFromRes[i] >= VOL20) daccsBuf = i;
+  }
+  g('p_daccs_be_note').textContent  = 'DACCS crosses 250k: '
+    + (daccsBE  !== null ? 'Year ' + daccsBE  : 'beyond Year 100');
+  g('p_arr_be_note').textContent    = 'ARR crosses 250k: '
+    + (arrBE    !== null ? 'Year ' + arrBE    : 'beyond Year 100');
+  g('p_buf_cross_note').textContent = 'DACCS crosses 50k (buffer equiv.): '
+    + (daccsBuf !== null ? 'Year ' + daccsBuf : 'beyond Year 100');
+
+  const cc = chartColors();
+  if (cHedge) cHedge.destroy();
+  cHedge = new Chart(g('chart_hedge'), {
+    type: 'line',
+    data: {
+      labels: chartYears,
+      datasets: [
+        {
+          label: 'DACCS tonnes purchasable',
+          data: daccsFromRes,
+          borderColor: '#0094ff',
+          backgroundColor: 'rgba(0,148,255,0.12)',
+          fill: true, tension: 0.4, borderWidth: 2.5, pointRadius: 0
+        },
+        {
+          label: 'ARR tonnes purchasable',
+          data: arrFromRes,
+          borderColor: '#f59e0b',
+          backgroundColor: 'rgba(245,158,11,0.08)',
+          fill: true, tension: 0.4, borderWidth: 2, pointRadius: 0
+        },
+        {
+          label: '250k — full reversal target',
+          data: chartYears.map(() => VOL),
+          borderColor: '#ff4d6a', borderDash: [7, 4], borderWidth: 2, pointRadius: 0, fill: false
+        },
+        {
+          label: '50k — buffer pool maximum (20%)',
+          data: chartYears.map(() => VOL20),
+          borderColor: '#f97316', borderDash: [4, 3], borderWidth: 1.5, pointRadius: 0, fill: false
+        }
+      ]
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { labels: { color: cc.text, font: { size: 11, family: 'IBM Plex Mono' } } },
+        tooltip: {
+          backgroundColor: 'rgba(12,16,35,0.95)',
+          titleColor: '#e8edf8',
+          bodyColor: '#8896b8',
+          borderColor: '#2a3154',
+          borderWidth: 1,
+          callbacks: {
+            title: ctx => 'Year ' + ctx[0].label,
+            label: ctx => ' ' + ctx.dataset.label + ': ' + Math.round(ctx.raw).toLocaleString() + ' tCO₂'
+          }
+        }
+      },
+      scales: {
+        x: {
+          grid: { color: cc.grid },
+          ticks: { color: cc.text, maxTicksLimit: 11, font: { size: 10 }, callback: v => 'Yr ' + v },
+          title: { display: true, text: 'Years from today', color: cc.text, font: { size: 10 } }
+        },
+        y: {
+          grid: { color: cc.grid },
+          ticks: { color: cc.text, font: { size: 10 }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v },
+          title: { display: true, text: 'Tonnes purchasable (tCO₂)', color: cc.text, font: { size: 10 } }
+        }
+      }
+    }
+  });
+}
+
+// ── Initialise all three functions ─────────────────
+updM();
+updB();
+updP();
+</script>
+</body>
+</html>
