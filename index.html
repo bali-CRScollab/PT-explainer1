@@ -918,7 +918,7 @@ input[type=range]::-moz-range-thumb {
       <div class="callout">
         <div class="callout-title">The worked example</div>
         <div class="callout-body">
-          An ARR project removing <strong style="color:var(--fg);">250,000 tonnes</strong>. Today's rules &mdash; as applied by Verra, whose buffer pool currently holds <strong style="color:var(--accent);font-weight:700;">77 million credits</strong> in permanent reserve &mdash; would require a <strong style="color:var(--accent);font-weight:700;">10&ndash;20% contribution: 25,000&ndash;50,000 tonnes</strong>, worth roughly <strong style="color:var(--fg);">$500k&ndash;$1m</strong> at $20/t &mdash; that can never be sold. Even if no reversals take place. This represents capital locked away indefinitely, with no climate return and no option to redeploy it into additional removal capacity.
+          This tool models Verra's <strong style="color:var(--fg);">AFOLU (Agriculture, Forestry &amp; Other Land Use) buffer pool</strong> &mdash; the largest voluntary carbon registry buffer in existence. Verra currently holds <strong style="color:var(--accent);font-weight:700;">77 million credits</strong> in its buffer reserve, drawn from a land-based portfolio estimated at roughly <strong style="color:var(--fg);">500 million issued credits</strong> (at a ~15% average contribution rate). The sliders below default to this scale. That 500 million tCO&#x2082; of <strong style="color:var(--accent);font-weight:700;">permanently withheld supply</strong> &mdash; worth tens of billions at any credible future carbon price &mdash; can never be sold, even if no reversals occur. This is the capital the Permanence Trust is designed to unlock.
         </div>
       </div>
     </div>
@@ -999,7 +999,7 @@ input[type=range]::-moz-range-thumb {
     <div class="callout" style="max-width:none;margin-top:8px;margin-bottom:18px;">
       <div class="callout-title">Coverage assumption — two very different targets</div>
       <div class="callout-body">
-        The <strong style="color:var(--primary);">Permanence Trust</strong> is explicitly designed to grow toward <strong style="color:var(--fg);">100% replacement of all 250,000 tCO₂</strong> if the project fully reverses. The <strong style="color:var(--destructive);">buffer pool</strong> withholds 10–20% of credits and can cover <em>only that withheld fraction</em> — the remaining 80–90% of sold credits have no financial backstop if they reverse. The models are not symmetric: one is a partial reserve, the other targets full liability coverage.
+        The <strong style="color:var(--primary);">Permanence Trust</strong> is explicitly designed to grow toward <strong style="color:var(--fg);">100% replacement of all 500 million tCO₂</strong> if the project fully reverses. The <strong style="color:var(--destructive);">buffer pool</strong> withholds 10–20% of credits and can cover <em>only that withheld fraction</em> — the remaining 80–90% of sold credits have no financial backstop if they reverse. The models are not symmetric: one is a partial reserve, the other targets full liability coverage.
       </div>
     </div>
 
@@ -1035,7 +1035,7 @@ input[type=range]::-moz-range-thumb {
     <div class="section-header narrow">
       <div class="section-num">Section 02 / The compounding reserve</div>
       <h2>Time is on our side.</h2>
-      <p class="deck">A <strong style="color:var(--accent);font-weight:700;">5% risk premium on a $5m project</strong> is $250k. At 7% return, it compounds to <strong style="color:var(--fg);">~$1.90m by year 30</strong>, and crosses <strong style="color:var(--fg);">$5m around year 44</strong>. Play with the sliders below to see how premium, return and appreciation shift the break-even year.</p>
+      <p class="deck">A <strong style="color:var(--accent);font-weight:700;">5% risk premium on a $10bn portfolio</strong> is $500m. At 7% return, that reserve compounds to <strong style="color:var(--fg);">~$3.8bn by year 30</strong>, and crosses <strong style="color:var(--fg);">$10bn around year 44</strong>. Play with the sliders below to see how premium, return and appreciation shift the break-even year.</p>
     </div>
 
     <div class="panel">
@@ -1111,7 +1111,7 @@ input[type=range]::-moz-range-thumb {
       <div class="cost-cell trust">
         <div class="cost-label">PT premium</div>
         <div class="cost-val" id="b_pt_cost_strip">—</div>
-        <div class="cost-sub">250,000 × credit price × premium rate</div>
+        <div class="cost-sub">500,000,000 × credit price × premium rate</div>
       </div>
       <div class="cost-cell diff">
         <span id="b_diff_pill">—</span>
@@ -1184,7 +1184,7 @@ input[type=range]::-moz-range-thumb {
       </div>
       <div class="vs-div">→</div>
       <div class="card trust">
-        <div class="card-label">Reserve covers 250k tCO₂ by…</div>
+        <div class="card-label">Reserve covers 500M tCO₂ by…</div>
         <div class="card-main" id="p_be_year_main">—</div>
         <div class="card-sub" id="p_be_shift_sub">vs. 0% allocation: —</div>
         <div class="card-tag" id="p_reserve_badge">Reserve at year 30: —</div>
@@ -1195,13 +1195,13 @@ input[type=range]::-moz-range-thumb {
     <div class="chart-wrap">
       <div class="chart-title">What the compounding reserve could buy — 2025 to 2125</div>
       <div class="chart-desc">
-        <span class="tag-a">■ Tan</span> = DACCS tonnes (expensive today, falling cost curve). <span class="tag-p">■ Sage</span> = ARR tonnes (cheaper today, but price rises with quality premium). The <span class="tag-d">red dashed</span> line is the full 250k reversal target. The orange dashed line is the 20% partial target — the ceiling a buffer pool ever reaches.
+        <span class="tag-a">■ Tan</span> = DACCS tonnes (expensive today, falling cost curve). <span class="tag-p">■ Sage</span> = ARR tonnes (cheaper today, but price rises with quality premium). The <span class="tag-d">red dashed</span> line is the full 500M tCO₂ reversal target. The orange dashed line is the 20% partial target — the ceiling a buffer pool ever reaches.
       </div>
       <canvas id="chart_hedge" height="180"></canvas>
       <div class="notes-strip">
-        <span id="p_daccs_be_note" class="pill accent">DACCS crosses 250k: —</span>
-        <span id="p_arr_be_note" class="pill primary">ARR crosses 250k: —</span>
-        <span id="p_buf_cross_note" class="pill accent">DACCS crosses 50k (buffer equiv.): —</span>
+        <span id="p_daccs_be_note" class="pill accent">DACCS crosses 500M: —</span>
+        <span id="p_arr_be_note" class="pill primary">ARR crosses 500M: —</span>
+        <span id="p_buf_cross_note" class="pill accent">DACCS crosses 100M (buffer equiv.): —</span>
       </div>
     </div>
 
@@ -1269,7 +1269,7 @@ input[type=range]::-moz-range-thumb {
      SCRIPT — logic carried over from original, chart styles reworked
 ══════════════════════════════════════════════ -->
 <script>
-const VOL = 250000;
+const VOL = 500000000; // Verra AFOLU buffer pool: ~500M credits at 15% contribution rate
 
 let state   = { price: 20, buf: 0.15, prem: 0.05, ret: 0.07, hor: 30, arrAppr: 0.02 };
 let beState = { prem: 0.05, ret: 0.07, arrAppr: 0.02, buf: 0.15 };
@@ -1345,7 +1345,7 @@ function updM() {
   g('m_buf_tonnes_sub').textContent = fmtT(withheld) + ' withheld permanently';
   g('m_pt_cost').textContent        = fmtGBP(ptPrem);
   g('m_pt_grows_sub').textContent   = 'Grows to ' + fmtGBP(ptGrows) + ' over ' + hor + ' yrs';
-  g('m_pt_pct_note').innerHTML      = 'Targets <strong>full 250,000 tCO₂</strong>. Premium = '
+  g('m_pt_pct_note').innerHTML      = 'Targets <strong>full 500 million tCO₂</strong>. Premium = '
     + fmtPct(pctOfVal) + ' of total project value (' + fmtGBP(totalVal) + ').';
   g('m_reserve_inline').textContent = fmtGBP(ptGrows) + ' reserve · '
     + fmtPct(reservePct) + ' of adjusted target';
@@ -1420,7 +1420,7 @@ function updB() {
     const mult    = (1 / buf).toFixed(1);
     g('b_diff_pill').innerHTML = `<span class="pill primary">PT is ${cheaper} cheaper · ${mult}× more project coverage</span>`;
   } else {
-    g('b_diff_pill').innerHTML = `<span class="pill accent">PT costs ${fmtGBP(-diff)} more · covers full 250k vs ${(buf*100).toFixed(0)}%</span>`;
+    g('b_diff_pill').innerHTML = `<span class="pill accent">PT costs ${fmtGBP(-diff)} more · covers full 500M vs ${(buf*100).toFixed(0)}%</span>`;
   }
 
   let beYear = null;
@@ -1565,14 +1565,14 @@ function updP() {
   const sb = g('p_status');
   if (beWith !== null && beWith <= 100) {
     sb.className = 'status-bar primary';
-    sb.textContent = 'Reserve can buy 250,000 tCO₂ of ARR by year ' + beWith
+    sb.textContent = 'Reserve can buy 500 million tCO₂ of ARR by year ' + beWith
       + (beShift !== null ? '. The DACCS allocation costs only ' + beShift + ' yr' + (beShift===1?'':'s') + ' of delay.' : '.');
   } else if (beWith !== null && beWith <= 150) {
     sb.className = 'status-bar accent';
-    sb.textContent = 'Reserve reaches 250k ARR tonnes at year ' + beWith + ' — beyond the 100-year window. Visible on chart but outside target horizon.';
+    sb.textContent = 'Reserve reaches 500M tCO₂ of ARR at year ' + beWith + ' — beyond the 100-year window. Visible on chart but outside target horizon.';
   } else {
     sb.className = 'status-bar destructive';
-    sb.textContent = 'Reserve cannot buy 250,000 tCO₂ of ARR within 200 years at these settings. Raise premium or return, or lower appreciation rate.';
+    sb.textContent = 'Reserve cannot buy 500 million tCO₂ of ARR within 200 years at these settings. Raise premium or return, or lower appreciation rate.';
   }
 
   const chartYears = Array.from({ length: 101 }, (_, i) => i);
@@ -1592,11 +1592,11 @@ function updP() {
     if (arrBE    === null && arrFromRes[i]   >= VOL)   arrBE    = i;
     if (daccsBuf === null && daccsFromRes[i] >= VOL20) daccsBuf = i;
   }
-  g('p_daccs_be_note').textContent  = 'DACCS crosses 250k: '
+  g('p_daccs_be_note').textContent  = 'DACCS crosses 500M: '
     + (daccsBE  !== null ? 'Year ' + daccsBE  : 'beyond Year 100');
-  g('p_arr_be_note').textContent    = 'ARR crosses 250k: '
+  g('p_arr_be_note').textContent    = 'ARR crosses 500M: '
     + (arrBE    !== null ? 'Year ' + arrBE    : 'beyond Year 100');
-  g('p_buf_cross_note').textContent = 'DACCS crosses 50k (buffer equiv.): '
+  g('p_buf_cross_note').textContent = 'DACCS crosses 100M (buffer equiv.): '
     + (daccsBuf !== null ? 'Year ' + daccsBuf : 'beyond Year 100');
 
   if (cHedge) cHedge.destroy();
@@ -1620,12 +1620,12 @@ function updP() {
           fill: true, tension: 0.36, borderWidth: 2, pointRadius: 0
         },
         {
-          label: '250k — full reversal target',
+          label: '500M — full reversal target',
           data: chartYears.map(() => VOL),
           borderColor: P.destructive, borderDash: [6, 4], borderWidth: 1.8, pointRadius: 0, fill: false
         },
         {
-          label: '50k — buffer pool ceiling',
+          label: '100M — buffer pool ceiling',
           data: chartYears.map(() => VOL20),
           borderColor: P.orange, borderDash: [4, 3], borderWidth: 1.4, pointRadius: 0, fill: false
         }
