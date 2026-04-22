@@ -463,6 +463,57 @@ input[type=range]::-moz-range-thumb {
   .slider-group + .slider-group { border-left: none; border-top: 1px solid var(--border-soft); }
 }
 
+/* ─── Compact single-viewport layout for sections 2 & 3 ─── */
+.section.compact {
+  padding: 28px 0 20px;
+  margin-top: 20px;
+  min-height: calc(100vh - 80px);
+  display: flex;
+  flex-direction: column;
+}
+.section.compact .section-header { margin-bottom: 18px; }
+.section.compact h2 { font-size: 30px; margin-bottom: 8px; }
+.section.compact .deck { font-size: 15px; }
+.section.compact .panel { padding: 14px 16px; margin-bottom: 10px; }
+.section.compact .panel-title { margin-bottom: 10px; font-size: 10.5px; }
+.section.compact .slider-row { margin-bottom: 10px; }
+.section.compact .slider-help { font-size: 10.5px; margin-top: 3px; line-height: 1.35; }
+.section.compact .hstat-val { font-size: 15px; }
+.section.compact .hstat-label { font-size: 10px; margin-bottom: 4px; }
+.section.compact .card { padding: 12px 14px; }
+.section.compact .card-main { font-size: 20px; margin-bottom: 6px; line-height: 1.15; }
+.section.compact .card-sub { font-size: 11.5px; margin-bottom: 4px; line-height: 1.35; }
+.section.compact .card-note { font-size: 11.5px; padding: 6px 10px; line-height: 1.4; }
+.section.compact .card-label { margin-bottom: 6px; font-size: 10.5px; }
+.section.compact .cost-strip { margin-bottom: 10px; }
+.section.compact .cost-cell { padding: 10px 14px; }
+.section.compact .cost-val { font-size: 17px; }
+.section.compact .cost-label { font-size: 10px; margin-bottom: 3px; }
+.section.compact .status-bar { padding: 9px 13px; font-size: 12.5px; margin-top: 8px; }
+.section.compact .chart-wrap { padding: 12px 14px 14px; margin-top: 10px; flex: 1; display: flex; flex-direction: column; min-height: 0; }
+.section.compact .chart-title { font-size: 10.5px; margin-bottom: 6px; }
+.section.compact .chart-desc { font-size: 11px; margin-bottom: 8px; }
+.section.compact .chart-canvas-wrap { position: relative; flex: 1; min-height: 180px; width: 100%; }
+.section.compact .chart-canvas-wrap > canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+
+.compact-split {
+  display: grid;
+  grid-template-columns: minmax(340px, 1fr) minmax(0, 1.35fr);
+  gap: 18px;
+  flex: 1;
+  min-height: 0;
+}
+.compact-split > .compact-left { display: flex; flex-direction: column; min-height: 0; }
+.compact-split > .compact-right { display: flex; flex-direction: column; min-height: 0; }
+.compact-split > .compact-right > .chart-wrap { height: 100%; }
+
+@media (max-width: 760px) {
+  .section.compact { min-height: 0; }
+  .compact-split { grid-template-columns: 1fr; }
+  .section.compact .chart-wrap { flex: 0 0 auto; }
+  .section.compact .chart-canvas-wrap { height: 320px; flex: 0 0 320px; }
+}
+
 /* ─── Cards row ─── */
 .cards-row {
   display: grid;
@@ -698,6 +749,11 @@ input[type=range]::-moz-range-thumb {
   .hstat { border-right: none; padding: 0; }
   .hstat + .hstat { padding-left: 0; }
 }
+
+/* In compact sections, hstat values should not wrap */
+.section.compact .hstat-val { white-space: nowrap; }
+.section.compact .hstat { padding: 0 12px 0 0; }
+.section.compact .hstat + .hstat { padding-left: 12px; }
 
 /* ─── Big pull-quote ─── */
 .pullquote {
@@ -966,8 +1022,8 @@ the Permanence Trust</strong> plans to put to work.
               <span class="key">ARR price appreciation</span>
               <span class="val" id="m_arr_appr_v">2.0% p.a.</span>
             </div>
-            <input type="range" id="m_arr_appr" min="0" max="6" value="2" step="0.5" oninput="updM()">
-            <div class="slider-help">0% flat · 2% modest quality premium · 4–5% market tightening · 6% high-end stress. Inflates the reversal cost the trust must cover.</div>
+            <input type="range" id="m_arr_appr" min="0" max="3" value="2" step="0.25" oninput="updM()">
+            <div class="slider-help">0% flat · 1–2% modest quality premium (central case) · 3% upper bound for sustained market tightening. Inflates the reversal cost the trust must cover.</div>
           </div>
         </div>
         <div class="slider-group accent">
@@ -1033,13 +1089,15 @@ the Permanence Trust</strong> plans to put to work.
   <!-- ══════════════════════════════════════════════
        SECTION 2 — Break-even
   ══════════════════════════════════════════════ -->
-  <section class="section" id="section-2">
+  <section class="section compact" id="section-2">
     <div class="section-header narrow">
       <div class="section-num">Section 02 / The compounding reserve</div>
       <h2>Time is on our side.</h2>
-      <p class="deck">Play with the sliders below to see how premium, return and appreciation shift the break-even year. Investing now lets the premium grow as the liability develops (see CaR tool).</p>
+      <p class="deck">Play with the sliders to see how premium, return and appreciation shift the break-even year. Investing now lets the premium grow as the liability develops (see CaR tool).</p>
     </div>
 
+    <div class="compact-split">
+    <div class="compact-left">
     <div class="panel">
       <div class="panel-title">
         <span>State of play at this moment</span>
@@ -1097,8 +1155,8 @@ the Permanence Trust</strong> plans to put to work.
             <span class="key">ARR price appreciation</span>
             <span class="val" id="b_arr_appr_v">2.0% p.a.</span>
           </div>
-          <input type="range" id="b_arr_appr" min="0" max="6" value="2" step="0.5" oninput="updB()">
-          <div class="slider-help">Inflates the reversal target — the reserve must outpace both return and appreciation.</div>
+          <input type="range" id="b_arr_appr" min="0" max="3" value="2" step="0.25" oninput="updB()">
+          <div class="slider-help">0% flat · 1–2% modest quality premium (central case) · 3% upper bound for sustained market tightening. Reserve must outpace both return and appreciation.</div>
         </div>
       </div>
     </div>
@@ -1120,36 +1178,42 @@ the Permanence Trust</strong> plans to put to work.
       </div>
     </div>
 
+    <div id="b_status" class="status-bar primary">—</div>
+    </div><!-- /compact-left -->
+
+    <div class="compact-right">
     <div class="chart-wrap">
       <div class="chart-title">PT reserve vs. appreciation-adjusted reversal target ($)</div>
-      <canvas id="chart_reserve" height="150"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_reserve"></canvas></div>
     </div>
-
-    <div id="b_status" class="status-bar primary">—</div>
+    </div><!-- /compact-right -->
+    </div><!-- /compact-split -->
   </section>
 
   <!-- ══════════════════════════════════════════════
        SECTION 3 — The Hedge
   ══════════════════════════════════════════════ -->
-  <section class="section" id="section-3">
+  <section class="section compact" id="section-3">
     <div class="section-header narrow">
       <div class="section-num">Section 03 / The hedge</div>
       <h2>An uncorrelated safety net.</h2>
       <p class="deck">Spend a small share of the premium on engineered removals today. Negligible tonnage, but a real demand signal &mdash; and the rest still compounds.</p>
     </div>
 
+    <div class="compact-split">
+    <div class="compact-left">
     <div class="panel">
       <div class="panel-title">
         <span>Locked from Section 02 — adjust there to change</span>
       </div>
-      <div class="header-stats" style="grid-template-columns:repeat(7,1fr);">
+      <div class="header-stats" style="grid-template-columns:repeat(2,1fr);row-gap:10px;column-gap:16px;">
         <div class="hstat"><div class="hstat-label">ARR price</div><div class="hstat-val" id="p_price_locked">—</div></div>
         <div class="hstat"><div class="hstat-label">Premium</div><div class="hstat-val" id="p_prem_locked">—</div></div>
         <div class="hstat"><div class="hstat-label">Return</div><div class="hstat-val" id="p_ret_locked">—</div></div>
         <div class="hstat"><div class="hstat-label">Appreciation</div><div class="hstat-val" id="p_appr_locked">—</div></div>
-        <div class="hstat"><div class="hstat-label">Buffer %</div><div class="hstat-val" id="p_buf_locked">—</div></div>
         <div class="hstat"><div class="hstat-label">Total premium</div><div class="hstat-val" id="p_total_prem">—</div></div>
-        <div class="hstat"><div class="hstat-label">Adj. target</div><div class="hstat-val" id="p_target">—</div></div>
+        <div class="hstat"><div class="hstat-label">Adj. target (30 yr)</div><div class="hstat-val" id="p_target">—</div></div>
+        <div class="hstat" style="display:none;"><div class="hstat-label">Buffer %</div><div class="hstat-val" id="p_buf_locked">—</div></div>
       </div>
     </div>
 
@@ -1193,39 +1257,38 @@ the Permanence Trust</strong> plans to put to work.
         <div class="card-tag" id="p_reserve_badge">Reserve at year 30: —</div>
       </div>
     </div>
-    <div id="p_status" class="status-bar primary" style="margin-bottom:20px;">—</div>
+    <div id="p_status" class="status-bar primary">—</div>
 
+    <div class="panel" style="margin-top:10px;">
+      <div class="panel-title">
+        <span>DACCS learning-curve assumption</span>
+      </div>
+      <div class="slider-row" style="margin-bottom:0;">
+        <div class="slider-label">
+          <span class="key">DACCS floor — 50 yrs (£/tCO₂)</span>
+          <span class="val" id="p_daccs_floor_v">£150</span>
+        </div>
+        <input type="range" id="p_daccs_floor" min="50" max="400" value="150" step="10" oninput="updP()">
+        <div class="slider-help">Optimistic £50–100 · Central £150 · Slow £250–400. Early buys pull DACCS down the cost curve.</div>
+      </div>
+    </div>
+    </div><!-- /compact-left -->
+
+    <div class="compact-right">
     <div class="chart-wrap">
       <div class="chart-title">What the compounding reserve could buy — 2025 to 2125</div>
       <div class="chart-desc">
-        <span class="tag-a">■ Tan</span> = DACCS tonnes (expensive today, falling cost curve). <span class="tag-p">■ Sage</span> = ARR tonnes (cheaper today, but price rises with quality premium). The <span class="tag-d">red dashed</span> line is the full 500M reversal target. The orange dashed line is the 20% partial target — the ceiling a buffer pool ever reaches.
+        <span class="tag-a">■ Tan</span> = DACCS tonnes. <span class="tag-p">■ Sage</span> = ARR tonnes. <span class="tag-d">Red dashed</span> = full 500M target. Orange dashed = 20% partial target (buffer ceiling).
       </div>
-      <canvas id="chart_hedge" height="180"></canvas>
+      <div class="chart-canvas-wrap"><canvas id="chart_hedge"></canvas></div>
       <div class="notes-strip">
         <span id="p_daccs_be_note" class="pill accent">DACCS crosses 500M: —</span>
         <span id="p_arr_be_note" class="pill primary">ARR crosses 500M: —</span>
         <span id="p_buf_cross_note" class="pill accent">DACCS crosses 50k (buffer equiv.): —</span>
       </div>
     </div>
-
-    <div class="panel" style="margin-top:18px;">
-      <div class="panel-title">
-        <span>DACCS learning-curve assumption</span>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 36px;">
-        <div class="slider-row">
-          <div class="slider-label">
-            <span class="key">DACCS floor — 50 years from now (£/tCO₂)</span>
-            <span class="val" id="p_daccs_floor_v">£150</span>
-          </div>
-          <input type="range" id="p_daccs_floor" min="50" max="400" value="150" step="10" oninput="updP()">
-          <div class="slider-help">Optimistic: £50–100 · Central: £150 · Slow learning: £250–400 · Flat after 2060.</div>
-        </div>
-        <div style="font-family:var(--font-serif);font-size:13px;line-height:1.55;color:var(--fg-muted);padding-top:4px;">
-          Early purchases like this one help pull DACCS down the cost curve — aggregate demand from PT-funded projects signals commercial viability and attracts manufacturing investment, accelerating the learning rate for the whole market.
-        </div>
-      </div>
-    </div>
+    </div><!-- /compact-right -->
+    </div><!-- /compact-split -->
   </section>
 
   <!-- ══════════════════════════════════════════════
@@ -1459,6 +1522,7 @@ function updB() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
@@ -1638,6 +1702,7 @@ function updP() {
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       interaction: { mode: 'index', intersect: false },
       plugins: {
         legend: {
@@ -1672,7 +1737,7 @@ function updP() {
         y: {
           grid: { color: P.grid, drawTicks: false },
           border: { color: P.grid },
-          ticks: { color: P.fgFaint, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v },
+          ticks: { color: P.fgFaint, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => v >= 1e9 ? (v/1e9).toFixed(1)+'B' : v >= 1e6 ? (v/1e6).toFixed(0)+'M' : v >= 1000 ? (v/1000).toFixed(0)+'k' : v },
           title: { display: true, text: 'Tonnes purchasable (tCO₂)', color: P.fgFaint, font: { size: 11, family: "'Source Serif 4', serif" } }
         }
       }
