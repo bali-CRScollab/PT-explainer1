@@ -918,7 +918,7 @@ input[type=range]::-moz-range-thumb {
       <div class="callout">
         <div class="callout-title">The worked example</div>
         <div class="callout-body">
-          An ARR project removing <strong style="color:var(--fg);">250,000 tonnes</strong>. Today's rules would require a <strong style="color:var(--accent);font-weight:700;">10&ndash;20% buffer &mdash; 25,000&ndash;50,000 tonnes</strong>, worth roughly <strong style="color:var(--fg);">&pound;500k&ndash;&pound;1m</strong> at &pound;20/t &mdash; that can never be sold. Even if no reversals take place. This represents capital locked away indefinitely, with no climate return and no option to redeploy it into additional removal capacity.
+          An ARR project removing <strong style="color:var(--fg);">250,000 tonnes</strong>. Today's rules &mdash; as applied by Verra, whose buffer pool currently holds <strong style="color:var(--accent);font-weight:700;">77 million credits</strong> in permanent reserve &mdash; would require a <strong style="color:var(--accent);font-weight:700;">10&ndash;20% contribution: 25,000&ndash;50,000 tonnes</strong>, worth roughly <strong style="color:var(--fg);">$500k&ndash;$1m</strong> at $20/t &mdash; that can never be sold. Even if no reversals take place. This represents capital locked away indefinitely, with no climate return and no option to redeploy it into additional removal capacity.
         </div>
       </div>
     </div>
@@ -945,7 +945,7 @@ input[type=range]::-moz-range-thumb {
           <div class="slider-row">
             <div class="slider-label">
               <span class="key">ARR credit price</span>
-              <span class="val" id="m_price_v">£20 / tCO₂</span>
+              <span class="val" id="m_price_v">$20 / tCO₂</span>
             </div>
             <input type="range" id="m_price" min="5" max="50" value="20" step="1" oninput="updM()">
           </div>
@@ -958,7 +958,7 @@ input[type=range]::-moz-range-thumb {
           </div>
           <div style="margin-top:10px;padding:8px 12px;background:var(--destructive-soft);border-radius:4px;border-left:2px solid var(--destructive);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
             <span style="font-family:var(--font-serif);font-size:12px;color:var(--fg-muted);font-style:italic;">Credits withheld from market</span>
-            <span style="font-family:var(--font-mono);font-size:12.5px;font-weight:500;color:var(--destructive);" id="m_withheld_stat">37,500 tCO₂ · £750k</span>
+            <span style="font-family:var(--font-mono);font-size:12.5px;font-weight:500;color:var(--destructive);" id="m_withheld_stat">37,500 tCO₂ · $750k</span>
           </div>
           <div class="slider-row" style="margin-top:14px;">
             <div class="slider-label">
@@ -1009,7 +1009,7 @@ input[type=range]::-moz-range-thumb {
         <div class="card-main" id="m_buf_cost">—</div>
         <div class="card-sub" id="m_buf_tonnes_sub">— withheld permanently</div>
         <div class="card-note">Covers only the <strong>withheld portion</strong>. The sold credits carry no backstop in the buffer reserve.</div>
-        <div class="card-tag">£0 compounding · no reserve built</div>
+        <div class="card-tag">$0 compounding · no reserve built</div>
       </div>
       <div class="vs-div">VS</div>
       <div class="card trust">
@@ -1035,7 +1035,7 @@ input[type=range]::-moz-range-thumb {
     <div class="section-header narrow">
       <div class="section-num">Section 02 / The compounding reserve</div>
       <h2>Time is on our side.</h2>
-      <p class="deck">A <strong style="color:var(--accent);font-weight:700;">5% risk premium on a &pound;5m project</strong> is &pound;250k. At 7% return, it compounds to <strong style="color:var(--fg);">~&pound;1.90m by year 30</strong>, and crosses <strong style="color:var(--fg);">&pound;5m around year 44</strong>. Play with the sliders below to see how premium, return and appreciation shift the break-even year.</p>
+      <p class="deck">A <strong style="color:var(--accent);font-weight:700;">5% risk premium on a $5m project</strong> is $250k. At 7% return, it compounds to <strong style="color:var(--fg);">~$1.90m by year 30</strong>, and crosses <strong style="color:var(--fg);">$5m around year 44</strong>. Play with the sliders below to see how premium, return and appreciation shift the break-even year.</p>
     </div>
 
     <div class="panel">
@@ -1119,7 +1119,7 @@ input[type=range]::-moz-range-thumb {
     </div>
 
     <div class="chart-wrap">
-      <div class="chart-title">PT reserve vs. appreciation-adjusted reversal target (£)</div>
+      <div class="chart-title">PT reserve vs. appreciation-adjusted reversal target ($)</div>
       <canvas id="chart_reserve" height="150"></canvas>
     </div>
 
@@ -1166,11 +1166,11 @@ input[type=range]::-moz-range-thumb {
         </div>
         <div class="slider-row">
           <div class="slider-label">
-            <span class="key">DACCS today price (£/tCO₂)</span>
-            <span class="val" id="p_daccs_today_v">£700</span>
+            <span class="key">DACCS today price ($/tCO₂)</span>
+            <span class="val" id="p_daccs_today_v">$700</span>
           </div>
           <input type="range" id="p_daccs_today" min="300" max="1200" value="700" step="50" oninput="updP()">
-          <div class="slider-help">Current range: ~£300–1,200/tCO₂ depending on technology and project.</div>
+          <div class="slider-help">Current range: ~$300–1,200/tCO₂ depending on technology and project.</div>
         </div>
       </div>
     </div>
@@ -1212,11 +1212,11 @@ input[type=range]::-moz-range-thumb {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 36px;">
         <div class="slider-row">
           <div class="slider-label">
-            <span class="key">DACCS floor — 50 years from now (£/tCO₂)</span>
-            <span class="val" id="p_daccs_floor_v">£150</span>
+            <span class="key">DACCS floor — 50 years from now ($/tCO₂)</span>
+            <span class="val" id="p_daccs_floor_v">$150</span>
           </div>
           <input type="range" id="p_daccs_floor" min="50" max="400" value="150" step="10" oninput="updP()">
-          <div class="slider-help">Optimistic: £50–100 · Central: £150 · Slow learning: £250–400 · Flat after 2060.</div>
+          <div class="slider-help">Optimistic: $50–100 · Central: $150 · Slow learning: $250–400 · Flat after 2060.</div>
         </div>
         <div style="font-family:var(--font-serif);font-size:13px;line-height:1.55;color:var(--fg-muted);padding-top:4px;">
           Early purchases like this one help pull DACCS down the cost curve — aggregate demand from PT-funded projects signals commercial viability and attracts manufacturing investment, accelerating the learning rate for the whole market.
@@ -1295,9 +1295,9 @@ const P = {
 
 function fmtGBP(v) {
   const a = Math.abs(v);
-  if (a >= 1e6) return (v < 0 ? '−' : '') + '£' + (Math.abs(v)/1e6).toFixed(2) + 'm';
-  if (a >= 1e3) return (v < 0 ? '−' : '') + '£' + (Math.abs(v)/1e3).toFixed(1) + 'k';
-  return (v < 0 ? '−' : '') + '£' + Math.round(Math.abs(v)).toLocaleString();
+  if (a >= 1e6) return (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e6).toFixed(2) + 'm';
+  if (a >= 1e3) return (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e3).toFixed(1) + 'k';
+  return (v < 0 ? '−' : '') + '$' + Math.round(Math.abs(v)).toLocaleString();
 }
 function fmtT(v)   { return Math.round(v).toLocaleString() + ' tCO₂'; }
 function fmtPct(v) { return (v * 100).toFixed(1) + '%'; }
@@ -1322,7 +1322,7 @@ function updM() {
   const hor      = +g('m_hor').value;
   const arrAppr  = +g('m_arr_appr').value / 100;
 
-  g('m_price_v').textContent    = '£' + price + ' / tCO₂';
+  g('m_price_v').textContent    = '$' + price + ' / tCO₂';
   g('m_buf_v').textContent      = g('m_buf').value + '%';
   g('m_prem_v').textContent     = (+g('m_prem').value).toFixed(1) + '%';
   g('m_ret_v').textContent      = (+g('m_ret').value).toFixed(1) + '%';
@@ -1412,7 +1412,7 @@ function updB() {
     : '∞';
 
   g('b_buf_cost_strip').textContent = fmtGBP(bufCost);
-  g('b_buf_strip_sub').textContent  = Math.round(VOL * buf).toLocaleString() + ' tCO₂ × £' + price + '/t';
+  g('b_buf_strip_sub').textContent  = Math.round(VOL * buf).toLocaleString() + ' tCO₂ × $' + price + '/t';
   g('b_pt_cost_strip').textContent  = fmtGBP(ptPrem);
   const diff = bufCost - ptPrem;
   if (diff > 0) {
@@ -1521,10 +1521,10 @@ function updP() {
   const daccsFloor = +g('p_daccs_floor').value;
 
   g('p_daccs_v').textContent         = g('p_daccs').value + '%';
-  g('p_daccs_today_v').textContent   = '£' + daccsToday;
-  g('p_daccs_floor_v').textContent   = '£' + daccsFloor;
+  g('p_daccs_today_v').textContent   = '$' + daccsToday;
+  g('p_daccs_floor_v').textContent   = '$' + daccsFloor;
 
-  g('p_price_locked').textContent = '£' + price + ' / tCO₂';
+  g('p_price_locked').textContent = '$' + price + ' / tCO₂';
   g('p_prem_locked').textContent  = (prem * 100).toFixed(1) + '%';
   g('p_ret_locked').textContent   = (ret * 100).toFixed(1) + '%';
   g('p_appr_locked').textContent  = (arrAppr * 100).toFixed(1) + '% p.a.';
@@ -1544,7 +1544,7 @@ function updP() {
   g('p_target').textContent     = fmtGBP(adjTarget);
 
   g('p_daccs_tonnes_main').textContent = fmtT(daccsTonnes);
-  g('p_daccs_spend_sub').textContent   = fmtGBP(daccsSpend) + ' spent at £' + daccsToday + '/tCO₂';
+  g('p_daccs_spend_sub').textContent   = fmtGBP(daccsSpend) + ' spent at $' + daccsToday + '/tCO₂';
 
   let beBase = null, beWith = null;
   for (let t = 1; t <= 200; t++) {
