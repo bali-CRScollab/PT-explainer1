@@ -918,7 +918,7 @@ input[type=range]::-moz-range-thumb {
       <div class="callout">
         <div class="callout-title">The worked example</div>
         <div class="callout-body">
-          This tool models Verra's <strong style="color:var(--fg);">AFOLU (Agriculture, Forestry &amp; Other Land Use) buffer pool</strong> &mdash; the largest voluntary carbon registry buffer in existence. Verra currently holds <strong style="color:var(--accent);font-weight:700;">77 million credits</strong> in its buffer reserve, drawn from a land-based portfolio estimated at roughly <strong style="color:var(--fg);">500 million issued credits</strong> (at a ~15% average contribution rate). The sliders below default to this scale. That 500 million tCO&#x2082; of <strong style="color:var(--accent);font-weight:700;">permanently withheld supply</strong> &mdash; worth tens of billions at any credible future carbon price &mdash; can never be sold, even if no reversals occur. This is the capital the Permanence Trust is designed to unlock.
+          An ARR project removing <strong style="color:var(--fg);">250,000 tonnes</strong>. Today's rules would require a <strong style="color:var(--accent);font-weight:700;">10&ndash;20% buffer &mdash; 25,000&ndash;50,000 tonnes</strong>, worth roughly <strong style="color:var(--fg);">&pound;500k&ndash;&pound;1m</strong> at &pound;20/t &mdash; that can never be sold. Even if no reversals take place. This represents capital locked away indefinitely, with no climate return and no option to redeploy it into additional removal capacity.
         </div>
       </div>
     </div>
@@ -945,7 +945,7 @@ input[type=range]::-moz-range-thumb {
           <div class="slider-row">
             <div class="slider-label">
               <span class="key">ARR credit price</span>
-              <span class="val" id="m_price_v">$20 / tCO₂</span>
+              <span class="val" id="m_price_v">£20 / tCO₂</span>
             </div>
             <input type="range" id="m_price" min="5" max="50" value="20" step="1" oninput="updM()">
           </div>
@@ -958,7 +958,7 @@ input[type=range]::-moz-range-thumb {
           </div>
           <div style="margin-top:10px;padding:8px 12px;background:var(--destructive-soft);border-radius:4px;border-left:2px solid var(--destructive);display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
             <span style="font-family:var(--font-serif);font-size:12px;color:var(--fg-muted);font-style:italic;">Credits withheld from market</span>
-            <span style="font-family:var(--font-mono);font-size:12.5px;font-weight:500;color:var(--destructive);" id="m_withheld_stat">37,500 tCO₂ · $750k</span>
+            <span style="font-family:var(--font-mono);font-size:12.5px;font-weight:500;color:var(--destructive);" id="m_withheld_stat">75,000,000 tCO₂ · $1.5bn</span>
           </div>
           <div class="slider-row" style="margin-top:14px;">
             <div class="slider-label">
@@ -999,7 +999,7 @@ input[type=range]::-moz-range-thumb {
     <div class="callout" style="max-width:none;margin-top:8px;margin-bottom:18px;">
       <div class="callout-title">Coverage assumption — two very different targets</div>
       <div class="callout-body">
-        The <strong style="color:var(--primary);">Permanence Trust</strong> is explicitly designed to grow toward <strong style="color:var(--fg);">100% replacement of all 500 million tCO₂</strong> if the project fully reverses. The <strong style="color:var(--destructive);">buffer pool</strong> withholds 10–20% of credits and can cover <em>only that withheld fraction</em> — the remaining 80–90% of sold credits have no financial backstop if they reverse. The models are not symmetric: one is a partial reserve, the other targets full liability coverage.
+        The <strong style="color:var(--primary);">Permanence Trust</strong> is explicitly designed to grow toward <strong style="color:var(--fg);">100% replacement of all 500,000,000 tCO₂</strong> if the project fully reverses. The <strong style="color:var(--destructive);">buffer pool</strong> withholds 10–20% of credits and can cover <em>only that withheld fraction</em> — the remaining 80–90% of sold credits have no financial backstop if they reverse. The models are not symmetric: one is a partial reserve, the other targets full liability coverage.
       </div>
     </div>
 
@@ -1009,7 +1009,7 @@ input[type=range]::-moz-range-thumb {
         <div class="card-main" id="m_buf_cost">—</div>
         <div class="card-sub" id="m_buf_tonnes_sub">— withheld permanently</div>
         <div class="card-note">Covers only the <strong>withheld portion</strong>. The sold credits carry no backstop in the buffer reserve.</div>
-        <div class="card-tag">$0 compounding · no reserve built</div>
+        <div class="card-tag">£0 compounding · no reserve built</div>
       </div>
       <div class="vs-div">VS</div>
       <div class="card trust">
@@ -1166,11 +1166,11 @@ input[type=range]::-moz-range-thumb {
         </div>
         <div class="slider-row">
           <div class="slider-label">
-            <span class="key">DACCS today price ($/tCO₂)</span>
-            <span class="val" id="p_daccs_today_v">$700</span>
+            <span class="key">DACCS today price (£/tCO₂)</span>
+            <span class="val" id="p_daccs_today_v">£700</span>
           </div>
           <input type="range" id="p_daccs_today" min="300" max="1200" value="700" step="50" oninput="updP()">
-          <div class="slider-help">Current range: ~$300–1,200/tCO₂ depending on technology and project.</div>
+          <div class="slider-help">Current range: ~£300–1,200/tCO₂ depending on technology and project.</div>
         </div>
       </div>
     </div>
@@ -1195,13 +1195,13 @@ input[type=range]::-moz-range-thumb {
     <div class="chart-wrap">
       <div class="chart-title">What the compounding reserve could buy — 2025 to 2125</div>
       <div class="chart-desc">
-        <span class="tag-a">■ Tan</span> = DACCS tonnes (expensive today, falling cost curve). <span class="tag-p">■ Sage</span> = ARR tonnes (cheaper today, but price rises with quality premium). The <span class="tag-d">red dashed</span> line is the full 500M tCO₂ reversal target. The orange dashed line is the 20% partial target — the ceiling a buffer pool ever reaches.
+        <span class="tag-a">■ Tan</span> = DACCS tonnes (expensive today, falling cost curve). <span class="tag-p">■ Sage</span> = ARR tonnes (cheaper today, but price rises with quality premium). The <span class="tag-d">red dashed</span> line is the full 500M reversal target. The orange dashed line is the 20% partial target — the ceiling a buffer pool ever reaches.
       </div>
       <canvas id="chart_hedge" height="180"></canvas>
       <div class="notes-strip">
         <span id="p_daccs_be_note" class="pill accent">DACCS crosses 500M: —</span>
         <span id="p_arr_be_note" class="pill primary">ARR crosses 500M: —</span>
-        <span id="p_buf_cross_note" class="pill accent">DACCS crosses 100M (buffer equiv.): —</span>
+        <span id="p_buf_cross_note" class="pill accent">DACCS crosses 50k (buffer equiv.): —</span>
       </div>
     </div>
 
@@ -1212,11 +1212,11 @@ input[type=range]::-moz-range-thumb {
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px 36px;">
         <div class="slider-row">
           <div class="slider-label">
-            <span class="key">DACCS floor — 50 years from now ($/tCO₂)</span>
-            <span class="val" id="p_daccs_floor_v">$150</span>
+            <span class="key">DACCS floor — 50 years from now (£/tCO₂)</span>
+            <span class="val" id="p_daccs_floor_v">£150</span>
           </div>
           <input type="range" id="p_daccs_floor" min="50" max="400" value="150" step="10" oninput="updP()">
-          <div class="slider-help">Optimistic: $50–100 · Central: $150 · Slow learning: $250–400 · Flat after 2060.</div>
+          <div class="slider-help">Optimistic: £50–100 · Central: £150 · Slow learning: £250–400 · Flat after 2060.</div>
         </div>
         <div style="font-family:var(--font-serif);font-size:13px;line-height:1.55;color:var(--fg-muted);padding-top:4px;">
           Early purchases like this one help pull DACCS down the cost curve — aggregate demand from PT-funded projects signals commercial viability and attracts manufacturing investment, accelerating the learning rate for the whole market.
@@ -1295,7 +1295,8 @@ const P = {
 
 function fmtGBP(v) {
   const a = Math.abs(v);
-  if (a >= 1e9) return (v < 0 ? '−' : '') + '
+  if (a >= 1e9) return (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e9).toFixed(2) + 'bn';
+  if (a >= 1e6) return (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e6).toFixed(1) + 'm';
   if (a >= 1e3) return (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e3).toFixed(1) + 'k';
   return (v < 0 ? '−' : '') + '$' + Math.round(Math.abs(v)).toLocaleString();
 }
@@ -1345,7 +1346,7 @@ function updM() {
   g('m_buf_tonnes_sub').textContent = fmtT(withheld) + ' withheld permanently';
   g('m_pt_cost').textContent        = fmtGBP(ptPrem);
   g('m_pt_grows_sub').textContent   = 'Grows to ' + fmtGBP(ptGrows) + ' over ' + hor + ' yrs';
-  g('m_pt_pct_note').innerHTML      = 'Targets <strong>full 500 million tCO₂</strong>. Premium = '
+  g('m_pt_pct_note').innerHTML      = 'Targets <strong>full 500,000,000 tCO₂</strong>. Premium = '
     + fmtPct(pctOfVal) + ' of total project value (' + fmtGBP(totalVal) + ').';
   g('m_reserve_inline').textContent = fmtGBP(ptGrows) + ' reserve · '
     + fmtPct(reservePct) + ' of adjusted target';
@@ -1565,14 +1566,14 @@ function updP() {
   const sb = g('p_status');
   if (beWith !== null && beWith <= 100) {
     sb.className = 'status-bar primary';
-    sb.textContent = 'Reserve can buy 500 million tCO₂ of ARR by year ' + beWith
+    sb.textContent = 'Reserve can buy 500M tCO₂ of ARR by year ' + beWith
       + (beShift !== null ? '. The DACCS allocation costs only ' + beShift + ' yr' + (beShift===1?'':'s') + ' of delay.' : '.');
   } else if (beWith !== null && beWith <= 150) {
     sb.className = 'status-bar accent';
     sb.textContent = 'Reserve reaches 500M tCO₂ of ARR at year ' + beWith + ' — beyond the 100-year window. Visible on chart but outside target horizon.';
   } else {
     sb.className = 'status-bar destructive';
-    sb.textContent = 'Reserve cannot buy 500 million tCO₂ of ARR within 200 years at these settings. Raise premium or return, or lower appreciation rate.';
+    sb.textContent = 'Reserve cannot buy 500M tCO₂ of ARR within 200 years at these settings. Raise premium or return, or lower appreciation rate.';
   }
 
   const chartYears = Array.from({ length: 101 }, (_, i) => i);
@@ -1596,7 +1597,7 @@ function updP() {
     + (daccsBE  !== null ? 'Year ' + daccsBE  : 'beyond Year 100');
   g('p_arr_be_note').textContent    = 'ARR crosses 500M: '
     + (arrBE    !== null ? 'Year ' + arrBE    : 'beyond Year 100');
-  g('p_buf_cross_note').textContent = 'DACCS crosses 100M (buffer equiv.): '
+  g('p_buf_cross_note').textContent = 'DACCS crosses 50k (buffer equiv.): '
     + (daccsBuf !== null ? 'Year ' + daccsBuf : 'beyond Year 100');
 
   if (cHedge) cHedge.destroy();
@@ -1625,780 +1626,7 @@ function updP() {
           borderColor: P.destructive, borderDash: [6, 4], borderWidth: 1.8, pointRadius: 0, fill: false
         },
         {
-          label: '100M — buffer pool ceiling',
-          data: chartYears.map(() => VOL20),
-          borderColor: P.orange, borderDash: [4, 3], borderWidth: 1.4, pointRadius: 0, fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: {
-          labels: {
-            color: P.fgMuted,
-            font: { size: 11, family: "'Source Serif 4', serif" },
-            boxWidth: 10, boxHeight: 10, usePointStyle: true, pointStyle: 'rectRounded'
-          }
-        },
-        tooltip: {
-          backgroundColor: P.tooltipBg,
-          titleColor: P.fg,
-          bodyColor: P.fgMuted,
-          borderColor: P.tooltipBorder,
-          borderWidth: 1,
-          padding: 10,
-          titleFont: { family: "'Source Serif 4', serif", weight: '600' },
-          bodyFont:  { family: "'JetBrains Mono', monospace", size: 11 },
-          callbacks: {
-            title: ctx => 'Year ' + ctx[0].label,
-            label: ctx => '  ' + ctx.dataset.label + ': ' + Math.round(ctx.raw).toLocaleString() + ' tCO₂'
-          }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, maxTicksLimit: 11, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => 'Yr ' + v },
-          title: { display: true, text: 'Years from today', color: P.fgFaint, font: { size: 11, family: "'Source Serif 4', serif" } }
-        },
-        y: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v },
-          title: { display: true, text: 'Tonnes purchasable (tCO₂)', color: P.fgFaint, font: { size: 11, family: "'Source Serif 4', serif" } }
-        }
-      }
-    }
-  });
-}
-
-updM();
-updB();
-updP();
-</script>
-</body>
-</html>
- + (Math.abs(v)/1e9).toFixed(2) + 'bn';
-        if (a >= 1e6) return (v < 0 ? '−' : '') + '
-  if (a >= 1e3) return (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e3).toFixed(1) + 'k';
-  return (v < 0 ? '−' : '') + '$' + Math.round(Math.abs(v)).toLocaleString();
-}
-function fmtT(v)   { return Math.round(v).toLocaleString() + ' tCO₂'; }
-function fmtPct(v) { return (v * 100).toFixed(1) + '%'; }
-function g(id)     { return document.getElementById(id); }
-
-function chartDefaults() {
-  return {
-    font: { family: "'JetBrains Mono', ui-monospace, monospace", size: 11 },
-    color: P.fgMuted,
-    borderColor: P.tooltipBorder,
-  };
-}
-
-// ══════════════════════════════════════════════
-// TAB 1 logic
-// ══════════════════════════════════════════════
-function updM() {
-  const price    = +g('m_price').value;
-  const buf      = +g('m_buf').value / 100;
-  const prem     = +g('m_prem').value / 100;
-  const ret      = +g('m_ret').value / 100;
-  const hor      = +g('m_hor').value;
-  const arrAppr  = +g('m_arr_appr').value / 100;
-
-  g('m_price_v').textContent    = '$' + price + ' / tCO₂';
-  g('m_buf_v').textContent      = g('m_buf').value + '%';
-  g('m_prem_v').textContent     = (+g('m_prem').value).toFixed(1) + '%';
-  g('m_ret_v').textContent      = (+g('m_ret').value).toFixed(1) + '%';
-  g('m_hor_v').textContent      = hor + ' yrs';
-  g('m_arr_appr_v').textContent = (+g('m_arr_appr').value).toFixed(1) + '% p.a.';
-
-  state = { price, buf, prem, ret, hor, arrAppr };
-
-  const totalVal    = price * VOL;
-  const futurePrice = price * Math.pow(1 + arrAppr, hor);
-  const adjTarget   = futurePrice * VOL;
-  const withheld    = VOL * buf;
-  const bufCost     = withheld * price;
-  const ptPrem      = totalVal * prem;
-  const ptGrows     = ptPrem * Math.pow(1 + ret, hor);
-  const pctOfVal    = ptPrem / totalVal;
-  const reservePct  = ptGrows / adjTarget;
-
-  g('m_buf_cost').textContent       = fmtGBP(bufCost);
-  g('m_buf_tonnes_sub').textContent = fmtT(withheld) + ' withheld permanently';
-  g('m_pt_cost').textContent        = fmtGBP(ptPrem);
-  g('m_pt_grows_sub').textContent   = 'Grows to ' + fmtGBP(ptGrows) + ' over ' + hor + ' yrs';
-  g('m_pt_pct_note').innerHTML      = 'Targets <strong>full 500 million tCO₂</strong>. Premium = '
-    + fmtPct(pctOfVal) + ' of total project value (' + fmtGBP(totalVal) + ').';
-  g('m_reserve_inline').textContent = fmtGBP(ptGrows) + ' reserve · '
-    + fmtPct(reservePct) + ' of adjusted target';
-
-  g('m_withheld_stat').textContent = fmtT(withheld) + ' · ' + fmtGBP(bufCost);
-
-  const diff = bufCost - ptPrem;
-  if (diff > 0) {
-    g('m_cost_diff').innerHTML = `<span class="pill primary">PT is ${fmtGBP(diff)} cheaper upfront (${fmtPct(diff/bufCost)} less)</span>`;
-  } else {
-    g('m_cost_diff').innerHTML = `<span class="pill accent">PT costs ${fmtGBP(-diff)} more upfront for full coverage</span>`;
-  }
-
-  let cls, label;
-  if (reservePct >= 1) {
-    cls = 'primary';
-    label = 'Reserve covers the adjusted reversal target at year ' + hor
-      + (arrAppr > 0 ? ' (incl. ' + fmtPct(arrAppr) + ' p.a. ARR inflation → ' + fmtGBP(adjTarget) + ')' : '') + '.';
-  } else if (reservePct >= 0.5) {
-    cls = 'accent';
-    label = 'Reserve covers ' + fmtPct(reservePct) + ' of the '
-      + (arrAppr > 0 ? 'inflation-adjusted ' : '') + 'reversal target ('
-      + fmtGBP(adjTarget) + '). Raise premium, return, or horizon to close the gap.';
-  } else {
-    cls = 'destructive';
-    label = 'Reserve covers only ' + fmtPct(reservePct) + ' of the '
-      + (arrAppr > 0 ? 'inflation-adjusted ' : '') + 'reversal target ('
-      + fmtGBP(adjTarget) + '). Materially insufficient at this horizon.';
-  }
-  const sb = g('m_status');
-  sb.className = 'status-bar ' + cls;
-  sb.textContent = label;
-}
-
-// ══════════════════════════════════════════════
-// TAB 2 logic
-// ══════════════════════════════════════════════
-function updB() {
-  const price   = state.price;
-  const buf     = +g('b_buf').value / 100;
-  const prem    = +g('b_prem').value / 100;
-  const ret     = +g('b_ret').value / 100;
-  const arrAppr = +g('b_arr_appr').value / 100;
-
-  g('b_prem_v').textContent     = (+g('b_prem').value).toFixed(1) + '%';
-  g('b_ret_v').textContent      = (+g('b_ret').value).toFixed(1) + '%';
-  g('b_arr_appr_v').textContent = (+g('b_arr_appr').value).toFixed(1) + '% p.a.';
-  g('b_buf_v').textContent      = g('b_buf').value + '%';
-
-  beState = { prem, ret, arrAppr, buf };
-
-  const totalVal     = price * VOL;
-  const adjTarget100 = totalVal * Math.pow(1 + arrAppr, 100);
-  const bufCost      = VOL * buf * price;
-  const ptPrem       = totalVal * prem;
-  const retReal      = (1 + ret) / (1 + arrAppr) - 1;
-  const minFloor     = Math.pow((1 + arrAppr) / (1 + ret), 100);
-
-  g('b_target').textContent     = fmtGBP(totalVal);
-  g('b_adj_target').textContent = fmtGBP(adjTarget100);
-  g('b_buf_cost_h').textContent = fmtGBP(bufCost);
-  g('b_floor').textContent      = retReal > 0
-    ? (minFloor * 100).toFixed(3) + '%'
-    : '∞';
-
-  g('b_buf_cost_strip').textContent = fmtGBP(bufCost);
-  g('b_buf_strip_sub').textContent  = Math.round(VOL * buf).toLocaleString() + ' tCO₂ × $' + price + '/t';
-  g('b_pt_cost_strip').textContent  = fmtGBP(ptPrem);
-  const diff = bufCost - ptPrem;
-  if (diff > 0) {
-    const cheaper = fmtPct(diff / bufCost);
-    const mult    = (1 / buf).toFixed(1);
-    g('b_diff_pill').innerHTML = `<span class="pill primary">PT is ${cheaper} cheaper · ${mult}× more project coverage</span>`;
-  } else {
-    g('b_diff_pill').innerHTML = `<span class="pill accent">PT costs ${fmtGBP(-diff)} more · covers full 500M vs ${(buf*100).toFixed(0)}%</span>`;
-  }
-
-  let beYear = null;
-  for (let t = 1; t <= 200; t++) {
-    if (ptPrem * Math.pow(1 + ret, t) >= totalVal * Math.pow(1 + arrAppr, t)) { beYear = t; break; }
-  }
-
-  const years = Array.from({ length: 100 }, (_, i) => i + 1);
-  const reserveVals = years.map(t => ptPrem * Math.pow(1 + ret, t));
-  const targetLine  = years.map(t => totalVal * Math.pow(1 + arrAppr, t));
-
-  if (cReserve) cReserve.destroy();
-  cReserve = new Chart(g('chart_reserve'), {
-    type: 'line',
-    data: {
-      labels: years,
-      datasets: [
-        {
-          label: 'PT reserve',
-          data: reserveVals,
-          borderColor: P.primary,
-          backgroundColor: P.primarySoft,
-          fill: true, tension: 0.32, borderWidth: 2.25, pointRadius: 0
-        },
-        {
-          label: 'Reversal target (ARR appreciation)',
-          data: targetLine,
-          borderColor: P.destructive,
-          borderDash: [6, 4], borderWidth: 1.8, pointRadius: 0, fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: {
-          labels: {
-            color: P.fgMuted,
-            font: { size: 11, family: "'Source Serif 4', serif" },
-            boxWidth: 10, boxHeight: 10, usePointStyle: true, pointStyle: 'rectRounded'
-          }
-        },
-        tooltip: {
-          backgroundColor: P.tooltipBg,
-          titleColor: P.fg,
-          bodyColor: P.fgMuted,
-          borderColor: P.tooltipBorder,
-          borderWidth: 1,
-          titleFont: { family: "'Source Serif 4', serif", weight: '600' },
-          bodyFont:  { family: "'JetBrains Mono', monospace", size: 11 },
-          padding: 10,
-          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmtGBP(ctx.raw) }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, maxTicksLimit: 11, font: { size: 10, family: "'JetBrains Mono', monospace" } },
-          title: { display: true, text: 'Year', color: P.fgFaint, font: { size: 11, family: "'Source Serif 4', serif" } }
-        },
-        y: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => fmtGBP(v) }
-        }
-      }
-    }
-  });
-
-  const sb = g('b_status');
-  if (!beYear) {
-    sb.className = 'status-bar destructive';
-    sb.textContent = 'Break-even never reached — reserve grows slower than the appreciation-inflated target. Raise return or premium, or lower the appreciation assumption.';
-  } else if (beYear <= 100) {
-    sb.className = 'status-bar primary';
-    sb.textContent = 'Break-even at year ' + beYear + '. Reserve overtakes the growing reversal target (net real rate: ' + fmtPct(retReal) + ' p.a.).';
-  } else {
-    sb.className = 'status-bar accent';
-    sb.textContent = 'Break-even at year ' + beYear + ' — beyond the 100-year horizon. Net real rate (' + fmtPct(retReal) + ') is positive but premium needs time.';
-  }
-
-  if (document.getElementById('section-3')) updP();
-}
-
-// ══════════════════════════════════════════════
-// TAB 3 logic
-// ══════════════════════════════════════════════
-function updP() {
-  const price      = state.price;
-  const prem       = beState.prem;
-  const ret        = beState.ret;
-  const arrAppr    = beState.arrAppr;
-  const buf        = beState.buf;
-  const daccsPct   = +g('p_daccs').value / 100;
-  const daccsToday = +g('p_daccs_today').value;
-  const daccsFloor = +g('p_daccs_floor').value;
-
-  g('p_daccs_v').textContent         = g('p_daccs').value + '%';
-  g('p_daccs_today_v').textContent   = '$' + daccsToday;
-  g('p_daccs_floor_v').textContent   = '$' + daccsFloor;
-
-  g('p_price_locked').textContent = '$' + price + ' / tCO₂';
-  g('p_prem_locked').textContent  = (prem * 100).toFixed(1) + '%';
-  g('p_ret_locked').textContent   = (ret * 100).toFixed(1) + '%';
-  g('p_appr_locked').textContent  = (arrAppr * 100).toFixed(1) + '% p.a.';
-  g('p_buf_locked').textContent   = (buf * 100).toFixed(0) + '%';
-
-  const totalVal      = price * VOL;
-  const totalPrem     = totalVal * prem;
-  const daccsSpend    = totalPrem * daccsPct;
-  const compoundStart = totalPrem * (1 - daccsPct);
-  const daccsTonnes   = daccsSpend / daccsToday;
-
-  const HOR = 30;
-  const adjTarget   = totalVal * Math.pow(1 + arrAppr, HOR);
-  const compoundEnd = compoundStart * Math.pow(1 + ret, HOR);
-
-  g('p_total_prem').textContent = fmtGBP(totalPrem);
-  g('p_target').textContent     = fmtGBP(adjTarget);
-
-  g('p_daccs_tonnes_main').textContent = fmtT(daccsTonnes);
-  g('p_daccs_spend_sub').textContent   = fmtGBP(daccsSpend) + ' spent at $' + daccsToday + '/tCO₂';
-
-  let beBase = null, beWith = null;
-  for (let t = 1; t <= 200; t++) {
-    const arrPriceT = price * Math.pow(1 + arrAppr, t);
-    if (beBase === null && totalPrem     * Math.pow(1 + ret, t) / arrPriceT >= VOL) beBase = t;
-    if (beWith === null && compoundStart * Math.pow(1 + ret, t) / arrPriceT >= VOL) beWith = t;
-    if (beBase !== null && beWith !== null) break;
-  }
-  const beBaseStr = beBase ? 'Year ' + beBase : 'beyond Year 200';
-  const beWithStr = beWith ? 'Year ' + beWith : 'beyond Year 200';
-  const beShift   = (beBase !== null && beWith !== null) ? (beWith - beBase) : null;
-
-  g('p_be_year_main').textContent  = beWithStr;
-  g('p_be_shift_sub').textContent  = 'vs. 0% allocation: ' + beBaseStr
-    + (beShift !== null ? ' (+' + beShift + ' yr' + (beShift === 1 ? '' : 's') + ')' : '');
-  g('p_reserve_badge').textContent = 'Reserve at year 30: ' + fmtGBP(compoundEnd);
-
-  const sb = g('p_status');
-  if (beWith !== null && beWith <= 100) {
-    sb.className = 'status-bar primary';
-    sb.textContent = 'Reserve can buy 500 million tCO₂ of ARR by year ' + beWith
-      + (beShift !== null ? '. The DACCS allocation costs only ' + beShift + ' yr' + (beShift===1?'':'s') + ' of delay.' : '.');
-  } else if (beWith !== null && beWith <= 150) {
-    sb.className = 'status-bar accent';
-    sb.textContent = 'Reserve reaches 500M tCO₂ of ARR at year ' + beWith + ' — beyond the 100-year window. Visible on chart but outside target horizon.';
-  } else {
-    sb.className = 'status-bar destructive';
-    sb.textContent = 'Reserve cannot buy 500 million tCO₂ of ARR within 200 years at these settings. Raise premium or return, or lower appreciation rate.';
-  }
-
-  const chartYears = Array.from({ length: 101 }, (_, i) => i);
-  const daccsDecayRate = Math.pow(daccsFloor / daccsToday, 1 / 35);
-  const daccsPrices = chartYears.map(y =>
-    y <= 35 ? daccsToday * Math.pow(daccsDecayRate, y) : daccsFloor
-  );
-  const arrPrices = chartYears.map(y => price * Math.pow(1 + arrAppr, y));
-  const reserves     = chartYears.map(y => compoundStart * Math.pow(1 + ret, y));
-  const daccsFromRes = chartYears.map((_, i) => reserves[i] / daccsPrices[i]);
-  const arrFromRes   = chartYears.map((_, i) => reserves[i] / arrPrices[i]);
-  const VOL20        = VOL * 0.20;
-
-  let daccsBE = null, arrBE = null, daccsBuf = null;
-  for (let i = 0; i < chartYears.length; i++) {
-    if (daccsBE  === null && daccsFromRes[i] >= VOL)   daccsBE  = i;
-    if (arrBE    === null && arrFromRes[i]   >= VOL)   arrBE    = i;
-    if (daccsBuf === null && daccsFromRes[i] >= VOL20) daccsBuf = i;
-  }
-  g('p_daccs_be_note').textContent  = 'DACCS crosses 500M: '
-    + (daccsBE  !== null ? 'Year ' + daccsBE  : 'beyond Year 100');
-  g('p_arr_be_note').textContent    = 'ARR crosses 500M: '
-    + (arrBE    !== null ? 'Year ' + arrBE    : 'beyond Year 100');
-  g('p_buf_cross_note').textContent = 'DACCS crosses 100M (buffer equiv.): '
-    + (daccsBuf !== null ? 'Year ' + daccsBuf : 'beyond Year 100');
-
-  if (cHedge) cHedge.destroy();
-  cHedge = new Chart(g('chart_hedge'), {
-    type: 'line',
-    data: {
-      labels: chartYears,
-      datasets: [
-        {
-          label: 'DACCS tonnes purchasable',
-          data: daccsFromRes,
-          borderColor: P.accent,
-          backgroundColor: P.accentSoft,
-          fill: true, tension: 0.36, borderWidth: 2.25, pointRadius: 0
-        },
-        {
-          label: 'ARR tonnes purchasable',
-          data: arrFromRes,
-          borderColor: P.primary,
-          backgroundColor: P.primarySoft,
-          fill: true, tension: 0.36, borderWidth: 2, pointRadius: 0
-        },
-        {
-          label: '500M — full reversal target',
-          data: chartYears.map(() => VOL),
-          borderColor: P.destructive, borderDash: [6, 4], borderWidth: 1.8, pointRadius: 0, fill: false
-        },
-        {
-          label: '100M — buffer pool ceiling',
-          data: chartYears.map(() => VOL20),
-          borderColor: P.orange, borderDash: [4, 3], borderWidth: 1.4, pointRadius: 0, fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: {
-          labels: {
-            color: P.fgMuted,
-            font: { size: 11, family: "'Source Serif 4', serif" },
-            boxWidth: 10, boxHeight: 10, usePointStyle: true, pointStyle: 'rectRounded'
-          }
-        },
-        tooltip: {
-          backgroundColor: P.tooltipBg,
-          titleColor: P.fg,
-          bodyColor: P.fgMuted,
-          borderColor: P.tooltipBorder,
-          borderWidth: 1,
-          padding: 10,
-          titleFont: { family: "'Source Serif 4', serif", weight: '600' },
-          bodyFont:  { family: "'JetBrains Mono', monospace", size: 11 },
-          callbacks: {
-            title: ctx => 'Year ' + ctx[0].label,
-            label: ctx => '  ' + ctx.dataset.label + ': ' + Math.round(ctx.raw).toLocaleString() + ' tCO₂'
-          }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, maxTicksLimit: 11, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => 'Yr ' + v },
-          title: { display: true, text: 'Years from today', color: P.fgFaint, font: { size: 11, family: "'Source Serif 4', serif" } }
-        },
-        y: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => v >= 1000 ? (v/1000).toFixed(0)+'k' : v },
-          title: { display: true, text: 'Tonnes purchasable (tCO₂)', color: P.fgFaint, font: { size: 11, family: "'Source Serif 4', serif" } }
-        }
-      }
-    }
-  });
-}
-
-updM();
-updB();
-updP();
-</script>
-</body>
-</html>
- + (Math.abs(v)/1e6).toFixed(1) + 'm';
-  if (a >= 1e3) return (v < 0 ? '−' : '') + '$' + (Math.abs(v)/1e3).toFixed(1) + 'k';
-  return (v < 0 ? '−' : '') + '$' + Math.round(Math.abs(v)).toLocaleString();
-}
-function fmtT(v)   { return Math.round(v).toLocaleString() + ' tCO₂'; }
-function fmtPct(v) { return (v * 100).toFixed(1) + '%'; }
-function g(id)     { return document.getElementById(id); }
-
-function chartDefaults() {
-  return {
-    font: { family: "'JetBrains Mono', ui-monospace, monospace", size: 11 },
-    color: P.fgMuted,
-    borderColor: P.tooltipBorder,
-  };
-}
-
-// ══════════════════════════════════════════════
-// TAB 1 logic
-// ══════════════════════════════════════════════
-function updM() {
-  const price    = +g('m_price').value;
-  const buf      = +g('m_buf').value / 100;
-  const prem     = +g('m_prem').value / 100;
-  const ret      = +g('m_ret').value / 100;
-  const hor      = +g('m_hor').value;
-  const arrAppr  = +g('m_arr_appr').value / 100;
-
-  g('m_price_v').textContent    = '$' + price + ' / tCO₂';
-  g('m_buf_v').textContent      = g('m_buf').value + '%';
-  g('m_prem_v').textContent     = (+g('m_prem').value).toFixed(1) + '%';
-  g('m_ret_v').textContent      = (+g('m_ret').value).toFixed(1) + '%';
-  g('m_hor_v').textContent      = hor + ' yrs';
-  g('m_arr_appr_v').textContent = (+g('m_arr_appr').value).toFixed(1) + '% p.a.';
-
-  state = { price, buf, prem, ret, hor, arrAppr };
-
-  const totalVal    = price * VOL;
-  const futurePrice = price * Math.pow(1 + arrAppr, hor);
-  const adjTarget   = futurePrice * VOL;
-  const withheld    = VOL * buf;
-  const bufCost     = withheld * price;
-  const ptPrem      = totalVal * prem;
-  const ptGrows     = ptPrem * Math.pow(1 + ret, hor);
-  const pctOfVal    = ptPrem / totalVal;
-  const reservePct  = ptGrows / adjTarget;
-
-  g('m_buf_cost').textContent       = fmtGBP(bufCost);
-  g('m_buf_tonnes_sub').textContent = fmtT(withheld) + ' withheld permanently';
-  g('m_pt_cost').textContent        = fmtGBP(ptPrem);
-  g('m_pt_grows_sub').textContent   = 'Grows to ' + fmtGBP(ptGrows) + ' over ' + hor + ' yrs';
-  g('m_pt_pct_note').innerHTML      = 'Targets <strong>full 500 million tCO₂</strong>. Premium = '
-    + fmtPct(pctOfVal) + ' of total project value (' + fmtGBP(totalVal) + ').';
-  g('m_reserve_inline').textContent = fmtGBP(ptGrows) + ' reserve · '
-    + fmtPct(reservePct) + ' of adjusted target';
-
-  g('m_withheld_stat').textContent = fmtT(withheld) + ' · ' + fmtGBP(bufCost);
-
-  const diff = bufCost - ptPrem;
-  if (diff > 0) {
-    g('m_cost_diff').innerHTML = `<span class="pill primary">PT is ${fmtGBP(diff)} cheaper upfront (${fmtPct(diff/bufCost)} less)</span>`;
-  } else {
-    g('m_cost_diff').innerHTML = `<span class="pill accent">PT costs ${fmtGBP(-diff)} more upfront for full coverage</span>`;
-  }
-
-  let cls, label;
-  if (reservePct >= 1) {
-    cls = 'primary';
-    label = 'Reserve covers the adjusted reversal target at year ' + hor
-      + (arrAppr > 0 ? ' (incl. ' + fmtPct(arrAppr) + ' p.a. ARR inflation → ' + fmtGBP(adjTarget) + ')' : '') + '.';
-  } else if (reservePct >= 0.5) {
-    cls = 'accent';
-    label = 'Reserve covers ' + fmtPct(reservePct) + ' of the '
-      + (arrAppr > 0 ? 'inflation-adjusted ' : '') + 'reversal target ('
-      + fmtGBP(adjTarget) + '). Raise premium, return, or horizon to close the gap.';
-  } else {
-    cls = 'destructive';
-    label = 'Reserve covers only ' + fmtPct(reservePct) + ' of the '
-      + (arrAppr > 0 ? 'inflation-adjusted ' : '') + 'reversal target ('
-      + fmtGBP(adjTarget) + '). Materially insufficient at this horizon.';
-  }
-  const sb = g('m_status');
-  sb.className = 'status-bar ' + cls;
-  sb.textContent = label;
-}
-
-// ══════════════════════════════════════════════
-// TAB 2 logic
-// ══════════════════════════════════════════════
-function updB() {
-  const price   = state.price;
-  const buf     = +g('b_buf').value / 100;
-  const prem    = +g('b_prem').value / 100;
-  const ret     = +g('b_ret').value / 100;
-  const arrAppr = +g('b_arr_appr').value / 100;
-
-  g('b_prem_v').textContent     = (+g('b_prem').value).toFixed(1) + '%';
-  g('b_ret_v').textContent      = (+g('b_ret').value).toFixed(1) + '%';
-  g('b_arr_appr_v').textContent = (+g('b_arr_appr').value).toFixed(1) + '% p.a.';
-  g('b_buf_v').textContent      = g('b_buf').value + '%';
-
-  beState = { prem, ret, arrAppr, buf };
-
-  const totalVal     = price * VOL;
-  const adjTarget100 = totalVal * Math.pow(1 + arrAppr, 100);
-  const bufCost      = VOL * buf * price;
-  const ptPrem       = totalVal * prem;
-  const retReal      = (1 + ret) / (1 + arrAppr) - 1;
-  const minFloor     = Math.pow((1 + arrAppr) / (1 + ret), 100);
-
-  g('b_target').textContent     = fmtGBP(totalVal);
-  g('b_adj_target').textContent = fmtGBP(adjTarget100);
-  g('b_buf_cost_h').textContent = fmtGBP(bufCost);
-  g('b_floor').textContent      = retReal > 0
-    ? (minFloor * 100).toFixed(3) + '%'
-    : '∞';
-
-  g('b_buf_cost_strip').textContent = fmtGBP(bufCost);
-  g('b_buf_strip_sub').textContent  = Math.round(VOL * buf).toLocaleString() + ' tCO₂ × $' + price + '/t';
-  g('b_pt_cost_strip').textContent  = fmtGBP(ptPrem);
-  const diff = bufCost - ptPrem;
-  if (diff > 0) {
-    const cheaper = fmtPct(diff / bufCost);
-    const mult    = (1 / buf).toFixed(1);
-    g('b_diff_pill').innerHTML = `<span class="pill primary">PT is ${cheaper} cheaper · ${mult}× more project coverage</span>`;
-  } else {
-    g('b_diff_pill').innerHTML = `<span class="pill accent">PT costs ${fmtGBP(-diff)} more · covers full 500M vs ${(buf*100).toFixed(0)}%</span>`;
-  }
-
-  let beYear = null;
-  for (let t = 1; t <= 200; t++) {
-    if (ptPrem * Math.pow(1 + ret, t) >= totalVal * Math.pow(1 + arrAppr, t)) { beYear = t; break; }
-  }
-
-  const years = Array.from({ length: 100 }, (_, i) => i + 1);
-  const reserveVals = years.map(t => ptPrem * Math.pow(1 + ret, t));
-  const targetLine  = years.map(t => totalVal * Math.pow(1 + arrAppr, t));
-
-  if (cReserve) cReserve.destroy();
-  cReserve = new Chart(g('chart_reserve'), {
-    type: 'line',
-    data: {
-      labels: years,
-      datasets: [
-        {
-          label: 'PT reserve',
-          data: reserveVals,
-          borderColor: P.primary,
-          backgroundColor: P.primarySoft,
-          fill: true, tension: 0.32, borderWidth: 2.25, pointRadius: 0
-        },
-        {
-          label: 'Reversal target (ARR appreciation)',
-          data: targetLine,
-          borderColor: P.destructive,
-          borderDash: [6, 4], borderWidth: 1.8, pointRadius: 0, fill: false
-        }
-      ]
-    },
-    options: {
-      responsive: true,
-      interaction: { mode: 'index', intersect: false },
-      plugins: {
-        legend: {
-          labels: {
-            color: P.fgMuted,
-            font: { size: 11, family: "'Source Serif 4', serif" },
-            boxWidth: 10, boxHeight: 10, usePointStyle: true, pointStyle: 'rectRounded'
-          }
-        },
-        tooltip: {
-          backgroundColor: P.tooltipBg,
-          titleColor: P.fg,
-          bodyColor: P.fgMuted,
-          borderColor: P.tooltipBorder,
-          borderWidth: 1,
-          titleFont: { family: "'Source Serif 4', serif", weight: '600' },
-          bodyFont:  { family: "'JetBrains Mono', monospace", size: 11 },
-          padding: 10,
-          callbacks: { label: ctx => '  ' + ctx.dataset.label + ': ' + fmtGBP(ctx.raw) }
-        }
-      },
-      scales: {
-        x: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, maxTicksLimit: 11, font: { size: 10, family: "'JetBrains Mono', monospace" } },
-          title: { display: true, text: 'Year', color: P.fgFaint, font: { size: 11, family: "'Source Serif 4', serif" } }
-        },
-        y: {
-          grid: { color: P.grid, drawTicks: false },
-          border: { color: P.grid },
-          ticks: { color: P.fgFaint, font: { size: 10, family: "'JetBrains Mono', monospace" }, callback: v => fmtGBP(v) }
-        }
-      }
-    }
-  });
-
-  const sb = g('b_status');
-  if (!beYear) {
-    sb.className = 'status-bar destructive';
-    sb.textContent = 'Break-even never reached — reserve grows slower than the appreciation-inflated target. Raise return or premium, or lower the appreciation assumption.';
-  } else if (beYear <= 100) {
-    sb.className = 'status-bar primary';
-    sb.textContent = 'Break-even at year ' + beYear + '. Reserve overtakes the growing reversal target (net real rate: ' + fmtPct(retReal) + ' p.a.).';
-  } else {
-    sb.className = 'status-bar accent';
-    sb.textContent = 'Break-even at year ' + beYear + ' — beyond the 100-year horizon. Net real rate (' + fmtPct(retReal) + ') is positive but premium needs time.';
-  }
-
-  if (document.getElementById('section-3')) updP();
-}
-
-// ══════════════════════════════════════════════
-// TAB 3 logic
-// ══════════════════════════════════════════════
-function updP() {
-  const price      = state.price;
-  const prem       = beState.prem;
-  const ret        = beState.ret;
-  const arrAppr    = beState.arrAppr;
-  const buf        = beState.buf;
-  const daccsPct   = +g('p_daccs').value / 100;
-  const daccsToday = +g('p_daccs_today').value;
-  const daccsFloor = +g('p_daccs_floor').value;
-
-  g('p_daccs_v').textContent         = g('p_daccs').value + '%';
-  g('p_daccs_today_v').textContent   = '$' + daccsToday;
-  g('p_daccs_floor_v').textContent   = '$' + daccsFloor;
-
-  g('p_price_locked').textContent = '$' + price + ' / tCO₂';
-  g('p_prem_locked').textContent  = (prem * 100).toFixed(1) + '%';
-  g('p_ret_locked').textContent   = (ret * 100).toFixed(1) + '%';
-  g('p_appr_locked').textContent  = (arrAppr * 100).toFixed(1) + '% p.a.';
-  g('p_buf_locked').textContent   = (buf * 100).toFixed(0) + '%';
-
-  const totalVal      = price * VOL;
-  const totalPrem     = totalVal * prem;
-  const daccsSpend    = totalPrem * daccsPct;
-  const compoundStart = totalPrem * (1 - daccsPct);
-  const daccsTonnes   = daccsSpend / daccsToday;
-
-  const HOR = 30;
-  const adjTarget   = totalVal * Math.pow(1 + arrAppr, HOR);
-  const compoundEnd = compoundStart * Math.pow(1 + ret, HOR);
-
-  g('p_total_prem').textContent = fmtGBP(totalPrem);
-  g('p_target').textContent     = fmtGBP(adjTarget);
-
-  g('p_daccs_tonnes_main').textContent = fmtT(daccsTonnes);
-  g('p_daccs_spend_sub').textContent   = fmtGBP(daccsSpend) + ' spent at $' + daccsToday + '/tCO₂';
-
-  let beBase = null, beWith = null;
-  for (let t = 1; t <= 200; t++) {
-    const arrPriceT = price * Math.pow(1 + arrAppr, t);
-    if (beBase === null && totalPrem     * Math.pow(1 + ret, t) / arrPriceT >= VOL) beBase = t;
-    if (beWith === null && compoundStart * Math.pow(1 + ret, t) / arrPriceT >= VOL) beWith = t;
-    if (beBase !== null && beWith !== null) break;
-  }
-  const beBaseStr = beBase ? 'Year ' + beBase : 'beyond Year 200';
-  const beWithStr = beWith ? 'Year ' + beWith : 'beyond Year 200';
-  const beShift   = (beBase !== null && beWith !== null) ? (beWith - beBase) : null;
-
-  g('p_be_year_main').textContent  = beWithStr;
-  g('p_be_shift_sub').textContent  = 'vs. 0% allocation: ' + beBaseStr
-    + (beShift !== null ? ' (+' + beShift + ' yr' + (beShift === 1 ? '' : 's') + ')' : '');
-  g('p_reserve_badge').textContent = 'Reserve at year 30: ' + fmtGBP(compoundEnd);
-
-  const sb = g('p_status');
-  if (beWith !== null && beWith <= 100) {
-    sb.className = 'status-bar primary';
-    sb.textContent = 'Reserve can buy 500 million tCO₂ of ARR by year ' + beWith
-      + (beShift !== null ? '. The DACCS allocation costs only ' + beShift + ' yr' + (beShift===1?'':'s') + ' of delay.' : '.');
-  } else if (beWith !== null && beWith <= 150) {
-    sb.className = 'status-bar accent';
-    sb.textContent = 'Reserve reaches 500M tCO₂ of ARR at year ' + beWith + ' — beyond the 100-year window. Visible on chart but outside target horizon.';
-  } else {
-    sb.className = 'status-bar destructive';
-    sb.textContent = 'Reserve cannot buy 500 million tCO₂ of ARR within 200 years at these settings. Raise premium or return, or lower appreciation rate.';
-  }
-
-  const chartYears = Array.from({ length: 101 }, (_, i) => i);
-  const daccsDecayRate = Math.pow(daccsFloor / daccsToday, 1 / 35);
-  const daccsPrices = chartYears.map(y =>
-    y <= 35 ? daccsToday * Math.pow(daccsDecayRate, y) : daccsFloor
-  );
-  const arrPrices = chartYears.map(y => price * Math.pow(1 + arrAppr, y));
-  const reserves     = chartYears.map(y => compoundStart * Math.pow(1 + ret, y));
-  const daccsFromRes = chartYears.map((_, i) => reserves[i] / daccsPrices[i]);
-  const arrFromRes   = chartYears.map((_, i) => reserves[i] / arrPrices[i]);
-  const VOL20        = VOL * 0.20;
-
-  let daccsBE = null, arrBE = null, daccsBuf = null;
-  for (let i = 0; i < chartYears.length; i++) {
-    if (daccsBE  === null && daccsFromRes[i] >= VOL)   daccsBE  = i;
-    if (arrBE    === null && arrFromRes[i]   >= VOL)   arrBE    = i;
-    if (daccsBuf === null && daccsFromRes[i] >= VOL20) daccsBuf = i;
-  }
-  g('p_daccs_be_note').textContent  = 'DACCS crosses 500M: '
-    + (daccsBE  !== null ? 'Year ' + daccsBE  : 'beyond Year 100');
-  g('p_arr_be_note').textContent    = 'ARR crosses 500M: '
-    + (arrBE    !== null ? 'Year ' + arrBE    : 'beyond Year 100');
-  g('p_buf_cross_note').textContent = 'DACCS crosses 100M (buffer equiv.): '
-    + (daccsBuf !== null ? 'Year ' + daccsBuf : 'beyond Year 100');
-
-  if (cHedge) cHedge.destroy();
-  cHedge = new Chart(g('chart_hedge'), {
-    type: 'line',
-    data: {
-      labels: chartYears,
-      datasets: [
-        {
-          label: 'DACCS tonnes purchasable',
-          data: daccsFromRes,
-          borderColor: P.accent,
-          backgroundColor: P.accentSoft,
-          fill: true, tension: 0.36, borderWidth: 2.25, pointRadius: 0
-        },
-        {
-          label: 'ARR tonnes purchasable',
-          data: arrFromRes,
-          borderColor: P.primary,
-          backgroundColor: P.primarySoft,
-          fill: true, tension: 0.36, borderWidth: 2, pointRadius: 0
-        },
-        {
-          label: '500M — full reversal target',
-          data: chartYears.map(() => VOL),
-          borderColor: P.destructive, borderDash: [6, 4], borderWidth: 1.8, pointRadius: 0, fill: false
-        },
-        {
-          label: '100M — buffer pool ceiling',
+          label: '50k — buffer pool ceiling',
           data: chartYears.map(() => VOL20),
           borderColor: P.orange, borderDash: [4, 3], borderWidth: 1.4, pointRadius: 0, fill: false
         }
