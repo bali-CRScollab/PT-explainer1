@@ -918,7 +918,8 @@ input[type=range]::-moz-range-thumb {
       <div class="callout">
         <div class="callout-title">The worked example</div>
         <div class="callout-body">
-          An ARR project removing <strong style="color:var(--fg);">250,000 tonnes</strong>. Today's rules would require a <strong style="color:var(--accent);font-weight:700;">10&ndash;20% buffer &mdash; 25,000&ndash;50,000 tonnes</strong>, worth roughly <strong style="color:var(--fg);">&pound;500k&ndash;&pound;1m</strong> at &pound;20/t &mdash; that can never be sold. Even if no reversals take place. This represents capital locked away indefinitely, with no climate return and no option to redeploy it into additional removal capacity.
+          This tool models Verra's <strong style="color:var(--fg);">AFOLU (Agriculture, Forestry &amp; Other Land Use) buffer pool</strong> &mdash; the largest voluntary carbon registry buffer in existence. Verra currently holds over <strong style="color:var(--fg);">77 million tonnes</strong> <strong style="color:var(--fg);">in its buffer reserve</strong>, drawn from a land-based portfolio estimated at roughly <strong style="color:var(--accent);font-weight:700;">500 million tonnes</strong>, worth roughly <strong style="color:var(--accent);font-weight:700;">$10bn</strong>. That <strong style="color:var(--fg);">buffer represents capital ($1.5bn)</strong> locked away indefinitely, with no climate return and no option to redeploy it into additional removal capacity, even if no reversals occur. This is capital <strong style="color:var(--fg);">
+the Permanence Trust</strong> plans to put to work.
         </div>
       </div>
     </div>
@@ -931,7 +932,7 @@ input[type=range]::-moz-range-thumb {
     <div class="section-header narrow">
       <div class="section-num">Section 01 / Buffer vs. Trust</div>
       <h2>The hidden cost of withholding supply.</h2>
-      <p class="deck">Buffer pools only insure the tonnes they withhold. The Permanence Trust releases those tonnes and invests the risk premium instead.</p>
+      <p class="deck">Buffer pools only insure the tonnes they withhold. The Permanence Trust could release those tonnes and charge a risk premium instead.</p>
     </div>
 
     <div class="panel">
@@ -996,13 +997,6 @@ input[type=range]::-moz-range-thumb {
       </div>
     </div>
 
-    <div class="callout" style="max-width:none;margin-top:8px;margin-bottom:18px;">
-      <div class="callout-title">Coverage assumption — two very different targets</div>
-      <div class="callout-body">
-        The <strong style="color:var(--primary);">Permanence Trust</strong> is explicitly designed to grow toward <strong style="color:var(--fg);">100% replacement of all 500,000,000 tCO₂</strong> if the project fully reverses. The <strong style="color:var(--destructive);">buffer pool</strong> withholds 10–20% of credits and can cover <em>only that withheld fraction</em> — the remaining 80–90% of sold credits have no financial backstop if they reverse. The models are not symmetric: one is a partial reserve, the other targets full liability coverage.
-      </div>
-    </div>
-
     <div class="cards-row">
       <div class="card buffer">
         <div class="card-label">Buffer pool model</div>
@@ -1026,6 +1020,14 @@ input[type=range]::-moz-range-thumb {
     </div>
     <div id="m_status" class="status-bar primary">—</div>
 
+    <div class="callout" style="max-width:none;margin-top:18px;margin-bottom:0;">
+      <div class="callout-title">Coverage assumption — two very different targets</div>
+      <div class="callout-body">
+        Capital held in this <strong style="color:var(--primary);">Permanence Trust Model</strong> is explicitly designed to grow toward <strong style="color:var(--fg);">100% replacement of credits</strong>. Meanwhile <strong style="color:var(--destructive);">buffer pools</strong> withhold on average only <strong style="color:var(--fg);">10–20% of credits</strong> and can cover <em>only that withheld fraction</em> — the remaining 80–90% of sold credits have no financial backstop if they reverse.
+<br>The models are not symmetric: one is a partial reserve, the other targets full liability coverage.
+      </div>
+    </div>
+
   </section>
 
   <!-- ══════════════════════════════════════════════
@@ -1035,7 +1037,7 @@ input[type=range]::-moz-range-thumb {
     <div class="section-header narrow">
       <div class="section-num">Section 02 / The compounding reserve</div>
       <h2>Time is on our side.</h2>
-      <p class="deck">A <strong style="color:var(--accent);font-weight:700;">5% risk premium on a $10bn portfolio</strong> is $500m. At 7% return, that reserve compounds to <strong style="color:var(--fg);">~$3.8bn by year 30</strong>, and crosses <strong style="color:var(--fg);">$10bn around year 44</strong>. Play with the sliders below to see how premium, return and appreciation shift the break-even year.</p>
+      <p class="deck">Play with the sliders below to see how premium, return and appreciation shift the break-even year. Investing now lets the premium grow as the liability develops (see CaR tool).</p>
     </div>
 
     <div class="panel">
@@ -1180,7 +1182,8 @@ input[type=range]::-moz-range-thumb {
         <div class="card-label">DACCS bought today</div>
         <div class="card-main" id="p_daccs_tonnes_main">—</div>
         <div class="card-sub" id="p_daccs_spend_sub">—</div>
-        <div class="card-note">Negligible tonnage today — but permanent, and a real demand signal to the market.</div>
+        <div class="card-sub" id="p_daccs_pct_2024" style="color:var(--accent);font-style:normal;">—</div>
+        <div class="card-note">Negligible tonnage today — but permanent, and a real demand signal to the market. 2024 DACCS contracted volume: <strong>~841,000 tCO₂</strong> (source: <a href="https://www.cdr.fyi" target="_blank" rel="noopener" style="color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor;">CDR.fyi</a>).</div>
       </div>
       <div class="vs-div">→</div>
       <div class="card trust">
@@ -1546,6 +1549,7 @@ function updP() {
 
   g('p_daccs_tonnes_main').textContent = fmtT(daccsTonnes);
   g('p_daccs_spend_sub').textContent   = fmtGBP(daccsSpend) + ' spent at $' + daccsToday + '/tCO₂';
+  g('p_daccs_pct_2024').textContent    = (daccsTonnes / 841000 * 100).toFixed(1) + '% of 2024 DACCS contracted volume';
 
   let beBase = null, beWith = null;
   for (let t = 1; t <= 200; t++) {
